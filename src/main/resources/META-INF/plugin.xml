@@ -19,7 +19,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="202"/>
+    <idea-version since-build="211"/>
 
     <applicationListeners>
         <listener class="cn.aprilviolet.highlightbracketpair.component.HighlighterBracketPairInitListener"
@@ -29,8 +29,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="HighlighterBracketPairNotification" displayType="STICKY_BALLOON"/>
 
+        <additionalTextAttributes scheme="Default" file="colorSchemes/HighlightBracketPairDefault.xml"/>
         <colorSettingsPage implementation="cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettingsPage"/>
-        <additionalTextAttributes scheme="Default" file="colorschemes/HighlightBracketPairDefault.xml"/>
         <applicationService serviceImplementation="cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettings"/>
     </extensions>
 
