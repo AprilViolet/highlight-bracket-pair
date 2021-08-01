@@ -1,7 +1,15 @@
-<!-- Keep a Changelog guide -> https://keepachangelog.com -->
-
-# highlight-bracket-pair Changelog
+# highlight-bracket-pair Changelog #
 
 ## [Unreleased]
+
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+
+- More language support
+
+## [1.0.0 - 2021.08.01]
+
+### Fixed
+
+- Re combed and compatible with the latest version of idea.
+- Fork from [qeesung#HighlightBracketPair](https://github.com/qeesung/HighlightBracketPair)
+

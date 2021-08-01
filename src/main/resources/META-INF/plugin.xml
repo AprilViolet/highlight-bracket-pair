@@ -1,19 +1,41 @@
 <idea-plugin>
-    <id>com.github.aprilviolet.highlightbracketpair</id>
-    <name>highlight-bracket-pair</name>
-    <vendor>aprilviolet</vendor>
+    <id>HighlightBracketPair</id>
+    <name>HighlightBracketPair</name>
+    <version>1.0.0</version>
+    <vendor email="AprilEternityLT@gmail.com" url="https://github.com/AprilViolet">AprilViolet</vendor>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
+    <description><![CDATA[
+      Color highlight the Bracket Pair in editor.
+      Fixed some compatibility issues. FROM <a href="https://github.com/qeesung/HighlightBracketPair">HighlightBracketPair</a><br/>
+      Supported Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, TypeScript, Golang, Ruby, Erlang, Rust, Html, Xml, Json, CSS...<br/>
+      Click <a href="https://github.com/AprilViolet/highlight-bracket-pair">github</a> for more information.
+    ]]></description>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.aprilviolet.highlightbracketpair.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.aprilviolet.highlightbracketpair.services.MyProjectService"/>
-    </extensions>
+    <change-notes><![CDATA[
+        <p>1.0.0</p>
+        <ul>
+            <li>Fixed some compatibility issues from project <a href="https://github.com/qeesung/HighlightBracketPair">HighlightBracketPair</a><br/>.Thanks.</li>
+        </ul>
+    ]]>
+    </change-notes>
+
+    <idea-version since-build="202"/>
 
     <applicationListeners>
-        <listener class="com.github.aprilviolet.highlightbracketpair.listeners.MyProjectManagerListener"
+        <listener class="cn.aprilviolet.highlightbracketpair.component.HighlighterBracketPairInitListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="HighlighterBracketPairNotification" displayType="STICKY_BALLOON"/>
+
+        <colorSettingsPage implementation="cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettingsPage"/>
+        <additionalTextAttributes scheme="Default" file="colorschemes/HighlightBracketPairDefault.xml"/>
+        <applicationService serviceImplementation="cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettings"/>
+    </extensions>
+
+    <actions>
+    </actions>
+
+    <depends>com.intellij.modules.lang</depends>
 </idea-plugin>
