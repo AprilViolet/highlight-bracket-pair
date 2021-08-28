@@ -31,7 +31,7 @@ import static cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes.DOUBLE_Q
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 14:50
+ * @date 2021.07.31 14:50
  * @since V1.0.0
  */
 abstract public class AbstractBraceHighlighter {

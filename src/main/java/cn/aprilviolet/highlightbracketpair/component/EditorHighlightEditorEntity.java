@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * EditorHighlightEditor的单例Map
+ * EditorHighlightEditor singleton Map
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.30 星期五 18:43
+ * @date 2021.07.30 18:43
  * @since V1.0.0
  */
 public class EditorHighlightEditorEntity {

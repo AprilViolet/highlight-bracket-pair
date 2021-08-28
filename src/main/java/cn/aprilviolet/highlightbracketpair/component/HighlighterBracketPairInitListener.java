@@ -13,52 +13,47 @@ import com.intellij.openapi.project.ProjectManagerListener;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 打开项目时候的监听器
+ * Listener when opening the project.
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.30 星期五 17:16
+ * @date 2021.07.30 17:16
  * @since V1.0.0
  */
 public class HighlighterBracketPairInitListener implements ProjectManagerListener {
     /**
-     * 当前插件是否更新
+     * Update notification flag.
      */
-    private boolean updated = Boolean.FALSE;
+    private boolean updateNotificationShown = Boolean.TRUE;
 
     /**
-     * 插件是否更新通知
-     */
-    private boolean updateNotificationShown = Boolean.FALSE;
-
-    /**
-     * 打开项目时候执行
+     * Run when the project is opened.
      *
-     * @param project 项目
+     * @param project project
      */
     @Override
     public void projectOpened(@NotNull Project project) {
         ProjectManagerListener.super.projectOpened(project);
-        // 注册监听器。这种类型的监听器在plugin.xml中配置不了?
+        // Register the listener
         EditorFactory.getInstance().addEditorFactoryListener(new HighlightBracketPairEditFactoryListener(),
                 ApplicationManager.getApplication());
 
         final HighlightBracketPairSettings settings = HighlightBracketPairSettings.getInstance();
-        updated = !getPlugin().getVersion().equals(settings.getPluginVersion());
-        if (updated) {
+        if (!getPlugin().getVersion().equals(settings.getPluginVersion())) {
             settings.setPluginVersion(getPlugin().getVersion());
-        }
-
-        if (!updated && !updateNotificationShown) {
-            String content = "HighlightBracketPair is updated to " + settings.getPluginVersion();
-            NotificationGroupManager.getInstance().getNotificationGroup("HighlighterBracketPairNotification")
-                    .createNotification(content, NotificationType.INFORMATION).notify(project);
-            updateNotificationShown = Boolean.TRUE;
+            if (updateNotificationShown) {
+                String content = "❤Thank you for downloading HighlightBracketPair v" + settings.getPluginVersion()
+                        + "<br/>🐞If you run into any problem, " +
+                        "<b><a href=\"https://github.com/AprilViolet\">feel free to raise a issue</a>.</b>";
+                NotificationGroupManager.getInstance().getNotificationGroup("HighlighterBracketPairNotification")
+                        .createNotification(content, NotificationType.INFORMATION).notify(project);
+                updateNotificationShown = Boolean.FALSE;
+            }
         }
     }
 
     /**
-     * 项目关闭时候执行
+     * Execute when the project is closed.
      *
      * @param project 项目
      */
@@ -73,7 +68,7 @@ public class HighlighterBracketPairInitListener implements ProjectManagerListene
     }
 
     /**
-     * Get the plugin description by plugin id
+     * Get the plugin description by plugin id.
      *
      * @return plugin description
      */

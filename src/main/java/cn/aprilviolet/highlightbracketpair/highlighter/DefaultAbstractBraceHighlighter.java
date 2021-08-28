@@ -15,13 +15,15 @@ import java.util.*;
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 14:52
+ * @date 2021.07.31 14:52
  * @since V1.0.0
  */
 public class DefaultAbstractBraceHighlighter extends AbstractBraceHighlighter {
     public static Map<Language, List<Pair<IElementType, IElementType>>> LANGUAGE_BRACE_PAIRS = new HashMap<>();
 
-    // Get all the registered languages' brace pairs and cache it.
+    /*
+     * Get all the registered languages' brace pairs and cache it.
+     */
     static {
         Collection<Language> languageList = Language.getRegisteredLanguages();
         for (Language language : languageList) {
