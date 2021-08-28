@@ -5,7 +5,7 @@ package cn.aprilviolet.highlightbracketpair.util;
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 14:16
+ * @date 2021.07.31 14:16
  * @since V1.0.0
  */
 public class Pair<L, R> {

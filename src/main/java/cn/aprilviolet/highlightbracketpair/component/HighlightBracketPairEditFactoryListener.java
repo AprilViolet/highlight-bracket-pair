@@ -6,13 +6,14 @@ import com.intellij.openapi.editor.event.EditorFactoryListener;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 编辑器构造时候的监听器：监听比如编辑面板的打开关闭等
+ * Listener when the editor is constructed: listen for the opening and closing of the editing panel, etc.
  *
- * 高亮括号对应用组件，负责一些初始化操作，比如注册编辑器事件监听器，检查插件更新等
+ * The highlighted brackets are responsible for some initialization operations for application components,
+ * such as registering editor event listeners, checking plug-in updates, etc.
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.30 星期五 17:16
+ * @date 2021.07.30 17:16
  * @since V1.0.0
  */
 public class HighlightBracketPairEditFactoryListener implements EditorFactoryListener {

@@ -1,16 +1,16 @@
 package cn.aprilviolet.highlightbracketpair.setting;
 
 /**
- * Idea中配置颜色设置的状态类
+ * The status class for configuring color settings in Idea
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 11:02
+ * @date 2021.07.31 11:02
  * @since V1.0.0
  */
 public class HighlightBracketPairPluginState {
     /**
-     * 插件版本
+     * Plug-in version
      */
     private String pluginVersion = "";
 

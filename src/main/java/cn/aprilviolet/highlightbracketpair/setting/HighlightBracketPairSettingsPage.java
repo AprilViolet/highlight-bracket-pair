@@ -23,7 +23,7 @@ import static cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes.DOUBLE_Q
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 11:02
+ * @date 2021.07.31 11:02
  * @since V1.0.0
  */
 public class HighlightBracketPairSettingsPage implements ColorSettingsPage {

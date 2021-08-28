@@ -10,7 +10,7 @@ import com.intellij.psi.tree.IElementType;
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 13:57
+ * @date 2021.07.31 13:57
  * @since V1.0.0
  */
 public class Brace {

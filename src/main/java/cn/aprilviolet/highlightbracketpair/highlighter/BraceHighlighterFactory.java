@@ -11,7 +11,7 @@ import com.intellij.psi.PsiFile;
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 14:54
+ * @date 2021.07.31 14:54
  * @since V1.0.0
  */
 public class BraceHighlighterFactory {

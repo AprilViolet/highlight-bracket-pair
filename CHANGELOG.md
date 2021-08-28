@@ -4,7 +4,13 @@
 
 ### Added
 
-- More language support
+- More language support.
+
+## [1.0.1 - 2021.08.29]
+
+### Fixed
+
+- Fix the bug that pops up every time you enter.#1
 
 ## [1.0.0 - 2021.08.01]
 

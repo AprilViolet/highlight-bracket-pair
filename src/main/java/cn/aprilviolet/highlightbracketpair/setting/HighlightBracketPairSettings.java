@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Idea中配置颜色的设置类
+ * Setting class for configuring colors in Idea
  *
  * @author AprilViolet
  * @version V1.0.0
- * @date 2021.07.31 星期六 11:02
+ * @date 2021.07.31 11:02
  * @since V1.0.0
  */
 @State(
@@ -26,9 +26,9 @@ public class HighlightBracketPairSettings implements PersistentStateComponent<Hi
     private HighlightBracketPairPluginState highlightBracketPairPluginState = new HighlightBracketPairPluginState();
 
     /**
-     * 获取插件设置的单例实例
+     * Get the singleton instance of the plugin settings
      *
-     * @return 插件设置的单例实例
+     * @return Singleton instance of plug-in settings
      */
     public static HighlightBracketPairSettings getInstance() {
         return ApplicationManager.getApplication().getService(HighlightBracketPairSettings.class);
@@ -46,9 +46,9 @@ public class HighlightBracketPairSettings implements PersistentStateComponent<Hi
     }
 
     /**
-     * 从配置文件中加载状态
+     * Load state from configuration file
      *
-     * @param highlightBracketPairPluginState 配置
+     * @param highlightBracketPairPluginState Configuration
      */
     @Override
     public void loadState(@NotNull HighlightBracketPairPluginState highlightBracketPairPluginState) {
