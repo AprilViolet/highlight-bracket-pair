@@ -8,6 +8,7 @@ import cn.aprilviolet.highlightbracketpair.util.Pair;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
+import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.ex.MarkupModelEx;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
@@ -93,7 +94,7 @@ abstract public class AbstractBraceHighlighter {
     }
 
     public BracePair findClosetBracePairInBraceTokens(int offset) {
-        EditorHighlighter editorHighlighter = editor.getHighlighter();
+        EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         boolean isBlockCaret = this.isBlockCaret();
         List<Pair<IElementType, IElementType>> braceTokens = this.getSupportedBraceToken();
         for (Pair<IElementType, IElementType> braceToken : braceTokens) {
@@ -117,7 +118,7 @@ abstract public class AbstractBraceHighlighter {
         if (offset < 0 || this.fileText == null || this.fileText.length() == 0) {
             return EMPTY_BRACE_PAIR;
         }
-        EditorHighlighter editorHighlighter = editor.getHighlighter();
+        EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         HighlighterIterator iterator = editorHighlighter.createIterator(offset);
         IElementType type = iterator.getTokenType();
         boolean isBlockCaret = this.isBlockCaret();
