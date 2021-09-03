@@ -62,4 +62,12 @@ public class HighlightBracketPairSettings implements PersistentStateComponent<Hi
     public void setPluginVersion(String pluginVersion) {
         highlightBracketPairPluginState.setPluginVersion(pluginVersion);
     }
+
+    public Boolean getBracketGutterEnable() {
+        return highlightBracketPairPluginState.getBracketGutterEnable();
+    }
+
+    public void setBracketGutterEnable(Boolean bracketGutterEnable) {
+        highlightBracketPairPluginState.setBracketGutterEnable(bracketGutterEnable);
+    }
 }
