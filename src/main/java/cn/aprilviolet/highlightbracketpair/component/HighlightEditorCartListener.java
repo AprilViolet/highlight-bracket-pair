@@ -1,13 +1,15 @@
 package cn.aprilviolet.highlightbracketpair.component;
 
 import cn.aprilviolet.highlightbracketpair.brace.BracePair;
-import cn.aprilviolet.highlightbracketpair.highlighter.AbstractBraceHighlighter;
-import cn.aprilviolet.highlightbracketpair.highlighter.BraceHighlighterFactory;
+import cn.aprilviolet.highlightbracketpair.highlighter.AbstractBracketHighlighter;
+import cn.aprilviolet.highlightbracketpair.highlighter.BracketHighlighterFactory;
+import cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettings;
 import cn.aprilviolet.highlightbracketpair.util.Pair;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.event.CaretEvent;
 import com.intellij.openapi.editor.event.CaretListener;
 import com.intellij.openapi.editor.markup.RangeHighlighter;
+import org.apache.commons.lang3.ObjectUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.event.KeyAdapter;
@@ -28,6 +30,10 @@ public class HighlightEditorCartListener implements CaretListener {
 
     private final List<RangeHighlighter> highlighterList = new ArrayList<>();
 
+    private final List<RangeHighlighter> gutterHighlighterList = new ArrayList<>();
+
+    private final HighlightBracketPairSettings highlightBracketPairSettings = HighlightBracketPairSettings.getInstance();
+
     private final ExtraHighlightTrigger extraHighlightTrigger;
 
     public HighlightEditorCartListener(Editor editor) {
@@ -36,12 +42,6 @@ public class HighlightEditorCartListener implements CaretListener {
         this.editor.getContentComponent().addKeyListener(this.extraHighlightTrigger);
         editor.getCaretModel().addCaretListener(this);
     }
-
-    public void dispose() {
-        editor.getCaretModel().removeCaretListener(this);
-        editor.getContentComponent().removeKeyListener(this.extraHighlightTrigger);
-    }
-
 
     /**
      * Called when the caret position has changed.
@@ -54,16 +54,6 @@ public class HighlightEditorCartListener implements CaretListener {
         highlightEditorCurrentPair(editor);
     }
 
-    @Override
-    public void caretAdded(@NotNull CaretEvent event) {
-        // ignore the event
-    }
-
-    @Override
-    public void caretRemoved(@NotNull CaretEvent event) {
-        // ignore the event
-    }
-
     /**
      * Highlight the current pair.
      *
@@ -71,24 +61,37 @@ public class HighlightEditorCartListener implements CaretListener {
      */
     public void highlightEditorCurrentPair(Editor editor) {
         int offset = editor.getCaretModel().getOffset();
-        AbstractBraceHighlighter highlighter = BraceHighlighterFactory.getBraceHighlighterInstance(editor);
+        AbstractBracketHighlighter highlighter = BracketHighlighterFactory.getBraceHighlighterInstance(editor);
         if (highlighter == null) {
             return;
         }
         // clear the high lighter
         highlighter.eraseHighlight(highlighterList);
-
         // find the brace positions
         BracePair bracePair = highlighter.findClosetBracePair(offset);
-
         // high light the brace
         Pair<RangeHighlighter, RangeHighlighter> highlighterEntry = highlighter.highlightPair(bracePair);
-
         // record the high lighter
-        if (highlighterEntry != null) {
+        if (ObjectUtils.isNotEmpty(highlighterEntry)) {
             highlighterList.add(highlighterEntry.getLeft());
             highlighterList.add(highlighterEntry.getRight());
         }
+
+        if (highlightBracketPairSettings.getBracketGutterEnable()) {
+            // clear braces in gutter
+            highlighter.eraseHighlight(gutterHighlighterList);
+            // show braces in gutter
+            Pair<RangeHighlighter, RangeHighlighter> highlighterInGutter = highlighter.renderBracesInGutter(bracePair);
+            if (ObjectUtils.isNotEmpty(highlighterInGutter)) {
+                gutterHighlighterList.add(highlighterInGutter.getLeft());
+                gutterHighlighterList.add(highlighterInGutter.getRight());
+            }
+        }
+    }
+
+    public void dispose() {
+        editor.getCaretModel().removeCaretListener(this);
+        editor.getContentComponent().removeKeyListener(this.extraHighlightTrigger);
     }
 
     public Editor getEditor() {
