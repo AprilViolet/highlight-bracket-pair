@@ -5,8 +5,6 @@ import com.intellij.ide.plugins.IdeaPluginDescriptor;
 import com.intellij.ide.plugins.PluginManagerCore;
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManagerListener;
@@ -34,9 +32,6 @@ public class HighlighterBracketPairInitListener implements ProjectManagerListene
     @Override
     public void projectOpened(@NotNull Project project) {
         ProjectManagerListener.super.projectOpened(project);
-        // Register the listener
-        EditorFactory.getInstance().addEditorFactoryListener(new HighlightBracketPairEditFactoryListener(),
-                ApplicationManager.getApplication());
 
         final HighlightBracketPairSettings settings = HighlightBracketPairSettings.getInstance();
         if (!getPlugin().getVersion().equals(settings.getPluginVersion())) {

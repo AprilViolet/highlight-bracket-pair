@@ -7,24 +7,24 @@ import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 
 /**
- * Factory to get the {@link AbstractBraceHighlighter} instance according to the editor.
+ * Factory to get the {@link AbstractBracketHighlighter} instance according to the editor.
  *
  * @author AprilViolet
  * @version V1.0.0
  * @date 2021.07.31 14:54
  * @since V1.0.0
  */
-public class BraceHighlighterFactory {
-    private BraceHighlighterFactory() {
+public class BracketHighlighterFactory {
+    private BracketHighlighterFactory() {
     }
 
     /**
-     * Get the {@link AbstractBraceHighlighter} according to the editor and file type.
+     * Get the {@link AbstractBracketHighlighter} according to the editor and file type.
      *
      * @param editor editor
      * @return brace highlighter
      */
-    public static AbstractBraceHighlighter getBraceHighlighterInstance(Editor editor) {
+    public static AbstractBracketHighlighter getBraceHighlighterInstance(Editor editor) {
         if (editor == null) {
             return null;
         }
@@ -39,6 +39,6 @@ public class BraceHighlighterFactory {
             return null;
         }
 
-        return new DefaultAbstractBraceHighlighter(editor);
+        return new DefaultAbstractBracketHighlighter(editor);
     }
 }

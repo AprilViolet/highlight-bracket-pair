@@ -18,11 +18,14 @@ import java.util.*;
  * @date 2021.07.31 14:52
  * @since V1.0.0
  */
-public class DefaultAbstractBraceHighlighter extends AbstractBraceHighlighter {
+public class DefaultAbstractBracketHighlighter extends AbstractBracketHighlighter {
+    /**
+     * Default registered languages brace
+     */
     public static Map<Language, List<Pair<IElementType, IElementType>>> LANGUAGE_BRACE_PAIRS = new HashMap<>();
 
     /*
-     * Get all the registered languages' brace pairs and cache it.
+     * Get all the registered languages brace pairs and cache it.
      */
     static {
         Collection<Language> languageList = Language.getRegisteredLanguages();
@@ -46,7 +49,7 @@ public class DefaultAbstractBraceHighlighter extends AbstractBraceHighlighter {
      *
      * @param editor editor
      */
-    public DefaultAbstractBraceHighlighter(Editor editor) {
+    public DefaultAbstractBracketHighlighter(Editor editor) {
         super(editor);
     }
 
@@ -59,6 +62,6 @@ public class DefaultAbstractBraceHighlighter extends AbstractBraceHighlighter {
     public List<Pair<IElementType, IElementType>> getSupportedBraceToken() {
         Language language = this.psiFile.getLanguage();
         List<Pair<IElementType, IElementType>> braceList = LANGUAGE_BRACE_PAIRS.get(language);
-        return braceList == null ? super.getSupportedBraceToken() : braceList;
+        return braceList == null ? new LinkedList<>() : braceList;
     }
 }

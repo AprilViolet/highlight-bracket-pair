@@ -1,11 +1,20 @@
 # highlight-bracket-pair Changelog #
 
 ## [Unreleased]
-## [1.0.1]
 
 ### Added
 
 - More language support.
+
+## [1.1.0 - 2021.09.03] ##
+
+### Added ###
+
++ Feature:render bracket in gutter.
+
+### Fixed ###
+
++ Fix that the listener renders multiple times
 
 ## [1.0.1 - 2021.08.29]
 

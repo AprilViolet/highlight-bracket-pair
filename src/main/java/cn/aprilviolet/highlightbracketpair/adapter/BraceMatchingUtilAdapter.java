@@ -56,7 +56,7 @@ public class BraceMatchingUtilAdapter {
      */
     public static int findLeftBraceOffset(HighlighterIterator iterator, IElementType lparenTokenType, CharSequence fileText,
                                           FileType fileType, boolean isBlockCaret) {
-        int lastLeftbraceOffset = -1;
+        int lastLeftBraceOffset = -1;
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
 
         Stack<IElementType> braceStack = new Stack<>();
@@ -88,7 +88,7 @@ public class BraceMatchingUtilAdapter {
             }
         }
 
-        return lastLeftbraceOffset;
+        return lastLeftBraceOffset;
     }
 
     /**
