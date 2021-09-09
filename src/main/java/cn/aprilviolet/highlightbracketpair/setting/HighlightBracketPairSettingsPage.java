@@ -37,12 +37,15 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
 
     public static final TextAttributesKey CUSP_BRACKETS_ATTR = TextAttributesKey.createTextAttributesKey("CUSP_BRACKETS_ATTR");
 
+    public static final TextAttributesKey BRACE_ATTR_GUTTER = TextAttributesKey.createTextAttributesKey("BRACE_ATTR_GUTTER");
+
     private static final AttributesDescriptor[] ATTRIBUTES_DESCRIPTION = {
             new AttributesDescriptor("Brace", BRACE_ATTR),
             new AttributesDescriptor("Bracket", BRACKET_ATTR),
             new AttributesDescriptor("Parenthesis", PARENTHESIS_ATTR),
             new AttributesDescriptor("DoubleQuote", DOUBLE_QUOTE_ATTR),
             new AttributesDescriptor("CuspBracket", CUSP_BRACKETS_ATTR),
+            new AttributesDescriptor("BraceInGutter", BRACE_ATTR_GUTTER)
     };
 
     private static final Map<IElementType, TextAttributesKey> ELEMENT_TYPE_ATTRIBUTE = new HashMap<>();
@@ -61,12 +64,14 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
         CONTENT_ATTRIBUTE.put("[", BRACKET_ATTR);
         CONTENT_ATTRIBUTE.put("(", PARENTHESIS_ATTR);
         CONTENT_ATTRIBUTE.put("<", CUSP_BRACKETS_ATTR);
+        CONTENT_ATTRIBUTE.put("|", BRACE_ATTR_GUTTER);
         // TAGS
         TAGS.put("Brace", BRACE_ATTR);
         TAGS.put("Bracket", BRACKET_ATTR);
         TAGS.put("Parenthesis", PARENTHESIS_ATTR);
         TAGS.put("DoubleQuote", DOUBLE_QUOTE_ATTR);
         TAGS.put("CuspBracket", CUSP_BRACKETS_ATTR);
+        TAGS.put("BraceInGutter", BRACE_ATTR_GUTTER);
     }
 
     public static TextAttributesKey getTextAttributesKeyByToken(IElementType type) {
@@ -93,10 +98,11 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     @Override
     public String getDemoText() {
         return "<Brace>{</Brace>...<Brace>}</Brace>" +
-                " <Parenthesis>(</Parenthesis>...<Parenthesis>)</Parenthesis>" +
-                " <Bracket>[</Bracket>...<Bracket>]</Bracket>" +
-                " <CuspBracket><</CuspBracket>...<CuspBracket>></CuspBracket>" +
-                " <DoubleQuote>\"</DoubleQuote>...<DoubleQuote>\"</DoubleQuote>";
+                "\n<Parenthesis>(</Parenthesis>...<Parenthesis>)</Parenthesis>" +
+                "\n<Bracket>[</Bracket>...<Bracket>]</Bracket>" +
+                "\n<CuspBracket><</CuspBracket>...<CuspBracket>></CuspBracket>" +
+                "\n<DoubleQuote>\"</DoubleQuote>...<DoubleQuote>\"</DoubleQuote>" +
+                "\n<BraceInGutter>|</BraceInGutter>...<BraceInGutter>|</BraceInGutter>";
     }
 
     @Nullable

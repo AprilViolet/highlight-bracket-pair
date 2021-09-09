@@ -3,6 +3,7 @@ package cn.aprilviolet.highlightbracketpair.setting;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.util.NlsContexts;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -56,9 +57,10 @@ public class BracketSettingsConfigurable implements Configurable {
      */
     @Override
     public boolean isModified() {
-        boolean isModified = highlightBracketPairSettingComponent.getBracketGutterEnable()
-                .equals(highlightBracketPairSettings.getBracketGutterEnable());
-        return !isModified;
+        return !highlightBracketPairSettingComponent.getBracketGutterEnable()
+                .equals(highlightBracketPairSettings.getBracketGutterEnable()) ||
+                !highlightBracketPairSettingComponent.getBracketGutterSizeText()
+                        .equals(highlightBracketPairSettings.getGutterBracketSize());
     }
 
     /**
@@ -70,6 +72,9 @@ public class BracketSettingsConfigurable implements Configurable {
     @Override
     public void apply() throws ConfigurationException {
         highlightBracketPairSettings.setBracketGutterEnable(highlightBracketPairSettingComponent.getBracketGutterEnable());
+        if (StringUtils.isNumeric(highlightBracketPairSettingComponent.getBracketGutterSizeText())) {
+            highlightBracketPairSettings.setGutterBracketSize(highlightBracketPairSettingComponent.getBracketGutterSizeText());
+        }
     }
 
     /**
@@ -79,5 +84,6 @@ public class BracketSettingsConfigurable implements Configurable {
     @Override
     public void reset() {
         highlightBracketPairSettingComponent.setBracketGutterEnable(highlightBracketPairSettings.getBracketGutterEnable());
+        highlightBracketPairSettingComponent.setBracketGutterSizeText(highlightBracketPairSettings.getGutterBracketSize());
     }
 }

@@ -10,6 +10,7 @@ import com.intellij.openapi.editor.event.CaretEvent;
 import com.intellij.openapi.editor.event.CaretListener;
 import com.intellij.openapi.editor.markup.RangeHighlighter;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.event.KeyAdapter;
@@ -80,8 +81,13 @@ public class HighlightEditorCartListener implements CaretListener {
         if (highlightBracketPairSettings.getBracketGutterEnable()) {
             // clear braces in gutter
             highlighter.eraseHighlight(gutterHighlighterList);
+            String gutterBracketSize = highlightBracketPairSettings.getGutterBracketSize();
+            if (StringUtils.isEmpty(gutterBracketSize) || !StringUtils.isNumeric(gutterBracketSize)) {
+                gutterBracketSize = "14";
+            }
             // show braces in gutter
-            Pair<RangeHighlighter, RangeHighlighter> highlighterInGutter = highlighter.renderBracesInGutter(bracePair);
+            Pair<RangeHighlighter, RangeHighlighter> highlighterInGutter = highlighter.renderBracesInGutter(bracePair,
+                    Integer.parseInt(gutterBracketSize));
             if (ObjectUtils.isNotEmpty(highlighterInGutter)) {
                 gutterHighlighterList.add(highlighterInGutter.getLeft());
                 gutterHighlighterList.add(highlighterInGutter.getRight());
