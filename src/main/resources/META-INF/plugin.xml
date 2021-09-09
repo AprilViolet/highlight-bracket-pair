@@ -5,17 +5,24 @@
     <vendor email="AprilEternityLT@gmail.com" url="https://github.com/AprilViolet">AprilViolet</vendor>
 
     <description><![CDATA[
-      Color highlight the Bracket Pair in editor.
-      Fixed some compatibility issues. FROM <a href="https://github.com/qeesung/HighlightBracketPair">HighlightBracketPair</a><br/>
-      Supported Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, TypeScript, Golang, Ruby, Erlang, Rust, Html, Xml, Json, CSS...<br/>.Of course, the support for certain languages is not perfect.
-      If you have questions,click <a href="https://github.com/AprilViolet/highlight-bracket-pair">github</a> for more information.
+      The plugin can color highlight the Bracket Pair in editor for IntelliJ.<br/>
+      New feature: can render the bracket color in gutter.<br/>
+      highlight-bracket-pair maybe support Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, TypeScript, Golang, Ruby, Erlang, Rust, Html, XML, Json, CSS....Of course, the support for certain languages is not perfect.<br/>
+      FROM <a href="https://github.com/qeesung/HighlightBracketPair">qeesung#HighlightBracketPair</a>.Fix bugs and continue to develop new features.<br/>
+      If you have any questions or get more information, you can go to <a href="https://github.com/AprilViolet/highlight-bracket-pair">Github</a>.Thanks.
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.2.0</p>
+        <ul>
+            <li>
+                Feature:customize the color and size of gutter brackets.<br/>
+            </li>
+        </ul>
         <p>1.1.0</p>
         <ul>
             <li>
-                Feature:render bracket in gutter.
+                Feature:render bracket in gutter.<br/>
                 Fixed:Fix that the listener renders multiple times
             </li>
         </ul>

@@ -141,7 +141,7 @@ abstract public class AbstractBracketHighlighter {
      * @param bracePair BracePair
      * @return List<RangeHighlighter>
      */
-    public Pair<RangeHighlighter, RangeHighlighter> renderBracesInGutter(BracePair bracePair) {
+    public Pair<RangeHighlighter, RangeHighlighter> renderBracesInGutter(BracePair bracePair, Integer gutterBracketSize) {
         final Brace leftBrace = bracePair.getLeftBrace();
         final Brace rightBrace = bracePair.getRightBrace();
         final int leftBraceOffset = leftBrace.getOffset();
@@ -166,9 +166,11 @@ abstract public class AbstractBracketHighlighter {
         final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
 
         int openBraceLine = document.getLineNumber(leftBraceOffset);
-        RangeHighlighter openBraceHighlighter = renderBraceInGutter(openBraceLine, leftBraceText, textAttributes);
+        RangeHighlighter openBraceHighlighter = renderBraceInGutter(openBraceLine, leftBraceText,
+                textAttributes, gutterBracketSize);
         int closeBraceLine = document.getLineNumber(rightBraceOffset);
-        RangeHighlighter closeBraceHighlighter = renderBraceInGutter(closeBraceLine, rightBraceText, textAttributes);
+        RangeHighlighter closeBraceHighlighter = renderBraceInGutter(closeBraceLine, rightBraceText,
+                textAttributes, gutterBracketSize);
 
         return new Pair<>(openBraceHighlighter, closeBraceHighlighter);
     }
@@ -181,7 +183,8 @@ abstract public class AbstractBracketHighlighter {
      * @param textAttributes text
      * @return RangeHighlighter
      */
-    public RangeHighlighter renderBraceInGutter(int braceLine, String braceText, TextAttributes textAttributes) {
+    public RangeHighlighter renderBraceInGutter(int braceLine, String braceText,
+                                                TextAttributes textAttributes, Integer gutterBracketSize) {
         RangeHighlighter braceHighlighter = editor.getMarkupModel()
                 .addLineHighlighter(braceLine, HighlighterLayer.SELECTION, null);
 
@@ -197,6 +200,7 @@ abstract public class AbstractBracketHighlighter {
                         }
 
                         g.setColor(textAttributes.getForegroundColor());
+                        g.setFont(new Font("JetBrains Mono", Font.BOLD, gutterBracketSize));
                         g.drawChars(braceText.toCharArray(), 0, braceText.length(), 0, 0);
                     }
 
@@ -234,6 +238,7 @@ abstract public class AbstractBracketHighlighter {
      * @param offset offset
      * @return BracePair
      */
+    @SuppressWarnings("RedundantCast")
     private BracePair findCloseBracePairInBraceTokens(int offset) {
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         boolean isBlockCaret = this.isBlockCaret();
@@ -261,6 +266,7 @@ abstract public class AbstractBracketHighlighter {
      * @param offset offset
      * @return BracePair
      */
+    @SuppressWarnings("RedundantCast")
     private BracePair findCloseBracePairInStringSymbols(int offset) {
         if (offset < 0 || this.fileText == null || this.fileText.length() == 0) {
             return EMPTY_BRACE_PAIR;
