@@ -6,13 +6,19 @@
 
 - More language support.
 
+## [1.2.0 - 2021.09.09]
+
+### Added
+
++ Feature:customize the color and size of gutter brackets.
+
 ## [1.1.0 - 2021.09.03]
 
-### Added ###
+### Added
 
 + Feature:render bracket in gutter.
 
-### Fixed ###
+### Fixed
 
 + Fix that the listener renders multiple times
 

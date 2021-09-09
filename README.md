@@ -7,11 +7,16 @@
 <!-- Plugin description -->
 
 The plugin can color highlight the Bracket Pair in editor for IntelliJ.<br/>
-	FROM <a href="https://github.com/qeesung/HighlightBracketPair">qeesung#HighlightBracketPair</a>.Fix bugs and continue to develop new features.<br/>
+
+New feature: can render the bracket color in gutter.<br/>
 
 highlight-bracket-pair maybe support Languages: Java, Groovy, Kotlin, Scala, Haskell, Python, JavaScript, TypeScript, Golang, Ruby, Erlang, Rust, Html, XML, Json, CSS....Of course, the support for certain languages is not perfect.<br/>
 
-If you have any questions, you can go to <a href="https://github.com/AprilViolet/highlight-bracket-pair">Github</a> to raise an issue.Thanks.
+FROM <a href="https://github.com/qeesung/HighlightBracketPair">qeesung#HighlightBracketPair</a>.Fix bugs and continue to develop new features.<br/>
+
+If you have any questions or get more information, you can go to <a href="https://github.com/AprilViolet/highlight-bracket-pair">Github</a>.Thanks.
+
+<!-- Plugin description end -->
 
 ## Screenshots ##
 
@@ -31,9 +36,11 @@ If you have any questions, you can go to <a href="https://github.com/AprilViolet
 
 ![HighlightBracketPair-004](./images/HighlightBracketPair-004.png)
 
-<!-- Plugin description end -->
-
 ## Installation
+
+<a href="https://plugins.jetbrains.com/embeddable/install/17320">
+    <img src="https://user-images.githubusercontent.com/12044174/123105697-94066100-d46a-11eb-9832-338cdf4e0612.png" width="300"/>
+</a>
 
 - Using IDE built-in plugin system:
   

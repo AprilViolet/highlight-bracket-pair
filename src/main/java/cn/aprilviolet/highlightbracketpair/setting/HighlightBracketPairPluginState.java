@@ -12,13 +12,18 @@ public class HighlightBracketPairPluginState {
     /**
      * Plug-in version
      */
-    private String pluginVersion = "";
+    private String pluginVersion = "0.0.0";
 
     /**
      * turn on rendering brackets in gutter
      * true:open false:close
      */
-    private Boolean bracketGutterEnable = Boolean.FALSE;
+    private Boolean bracketGutterEnable = Boolean.TRUE;
+
+    /**
+     * customize bracket in gutter size
+     */
+    private String gutterBracketSize = "14";
 
     public String getPluginVersion() {
         return pluginVersion;
@@ -34,5 +39,13 @@ public class HighlightBracketPairPluginState {
 
     public void setBracketGutterEnable(Boolean bracketGutterEnable) {
         this.bracketGutterEnable = bracketGutterEnable;
+    }
+
+    public String getGutterBracketSize() {
+        return gutterBracketSize;
+    }
+
+    public void setGutterBracketSize(String gutterBracketSize) {
+        this.gutterBracketSize = gutterBracketSize;
     }
 }
