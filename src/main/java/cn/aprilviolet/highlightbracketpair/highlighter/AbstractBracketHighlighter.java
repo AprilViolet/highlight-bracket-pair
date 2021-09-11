@@ -64,6 +64,8 @@ abstract public class AbstractBracketHighlighter {
 
     public static final String RIGHT_BRACKET = "}";
 
+    public static final String BRACE_ATTR_GUTTER = "|";
+
     public AbstractBracketHighlighter(Editor editor) {
         this.editor = editor;
         this.project = this.editor.getProject();
@@ -161,7 +163,7 @@ abstract public class AbstractBracketHighlighter {
                 HighlightBracketPairSettingsPage.getTextAttributesKeyByToken(leftBrace.getElementType());
         // if not found, get the text attr by brace text
         if (textAttributesKey == null) {
-            textAttributesKey = HighlightBracketPairSettingsPage.getTextAttributesKeyByText(leftBraceText);
+            textAttributesKey = HighlightBracketPairSettingsPage.getTextAttributesKeyByText(BRACE_ATTR_GUTTER);
         }
         final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
 
