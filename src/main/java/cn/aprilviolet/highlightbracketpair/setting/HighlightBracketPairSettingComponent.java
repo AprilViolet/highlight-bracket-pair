@@ -23,7 +23,7 @@ public class HighlightBracketPairSettingComponent {
     /**
      * setting main panel
      */
-    private final JPanel bracketMainPanel;
+    private final JBPanel bracketMainPanel;
 
     /**
      * Open render bracket in gutter

@@ -6,6 +6,12 @@
 
 - More language support.
 
+## [1.3.0 - 2021.09.22]
+
+### Added
+
++ Feature:Extension enhancement for Xml.
+
 ## [1.2.0 - 2021.09.09]
 
 ### Added

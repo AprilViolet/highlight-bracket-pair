@@ -15,25 +15,30 @@ import java.util.Map;
  * @since V1.0.0
  */
 public class BraceTokenTypes {
-    private final static Map<IElementType, String> ELEMENT_TYPE_TEXT = new HashMap<>();
+    private BraceTokenTypes() {
+    }
 
-    public final static IElementType DOUBLE_QUOTE = new IElementType("DOUBLE_QUOTE", Language.ANY);
+    private static final Map<IElementType, String> ELEMENT_TYPE_TEXT = new HashMap<>();
 
-    public final static String GROOVY_STRING_TOKEN = "Gstring";
+    public static final IElementType DOUBLE_QUOTE = new IElementType("DOUBLE_QUOTE", Language.ANY);
 
-    public final static String GROOVY_SINGLE_QUOTE_TOKEN = "string";
+    public static final String GROOVY_STRING_TOKEN = "Gstring";
 
-    public final static String KOTLIN_STRING_TOKEN = "REGULAR_STRING_PART";
+    public static final String GROOVY_SINGLE_QUOTE_TOKEN = "string";
 
-    public final static String KOTLIN_CHAR_TOKEN = "CHARACTER_LITERAL";
+    public static final String KOTLIN_STRING_TOKEN = "REGULAR_STRING_PART";
 
-    public final static String JS_STRING_TOKEN = "STRING";
+    public static final String KOTLIN_CHAR_TOKEN = "CHARACTER_LITERAL";
 
-    public final static String JAVA_STRING_TOKEN = "STRING_LITERAL";
+    public static final String JS_STRING_TOKEN = "STRING";
 
-    public final static String SCALA_STRING_TOKEN = "string content";
+    public static final String JAVA_STRING_TOKEN = "STRING_LITERAL";
 
-    public final static String HASKELL_STRING_TOKEN = "HaskellTokenType.STRING_LITERAL";
+    public static final String SCALA_STRING_TOKEN = "string content";
+
+    public static final String HASKELL_STRING_TOKEN = "HaskellTokenType.STRING_LITERAL";
+
+    public static final IElementType TEXT_TOKEN = new IElementType("TEXT_TOKEN", Language.ANY);
 
     static {
         ELEMENT_TYPE_TEXT.put(DOUBLE_QUOTE, "\"");

@@ -51,8 +51,7 @@ public class HighlightEditorCartListener implements CaretListener {
      */
     @Override
     public void caretPositionChanged(@NotNull CaretEvent event) {
-        Editor editor = event.getEditor();
-        highlightEditorCurrentPair(editor);
+        highlightEditorCurrentPair(event.getEditor());
     }
 
     /**
@@ -78,7 +77,7 @@ public class HighlightEditorCartListener implements CaretListener {
             highlighterList.add(highlighterEntry.getRight());
         }
 
-        if (highlightBracketPairSettings.getBracketGutterEnable()) {
+        if (Boolean.TRUE.equals(highlightBracketPairSettings.getBracketGutterEnable())) {
             // clear braces in gutter
             highlighter.eraseHighlight(gutterHighlighterList);
             String gutterBracketSize = highlightBracketPairSettings.getGutterBracketSize();
@@ -123,11 +122,6 @@ public class HighlightEditorCartListener implements CaretListener {
                 return;
             }
             this.highlightEditorCartListener.highlightEditorCurrentPair(this.editor);
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            super.keyPressed(e);
         }
 
         @Override
