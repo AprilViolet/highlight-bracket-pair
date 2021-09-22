@@ -1,8 +1,10 @@
 package cn.aprilviolet.highlightbracketpair.highlighter;
 
-import cn.aprilviolet.highlightbracketpair.adapter.BraceMatchingUtilAdapter;
+import cn.aprilviolet.highlightbracketpair.adapter.BracketMatchProcessorHolder;
 import cn.aprilviolet.highlightbracketpair.brace.Brace;
 import cn.aprilviolet.highlightbracketpair.brace.BracePair;
+import cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes;
+import cn.aprilviolet.highlightbracketpair.extend.XmlSupportedToken;
 import cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettingsPage;
 import cn.aprilviolet.highlightbracketpair.util.Pair;
 import com.intellij.openapi.editor.Document;
@@ -19,9 +21,11 @@ import com.intellij.openapi.editor.markup.RangeHighlighter;
 import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.xml.XmlTokenType;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -38,12 +42,12 @@ import static cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes.DOUBLE_Q
  * @date 2021.07.31 14:50
  * @since V1.0.0
  */
-abstract public class AbstractBracketHighlighter {
-    public final static int NON_OFFSET = -1;
+public abstract class AbstractBracketHighlighter {
+    public static final Integer NON_OFFSET = -1;
 
-    public final static int HIGHLIGHT_LAYER_WEIGHT = 100;
+    public static final Integer HIGHLIGHT_LAYER_WEIGHT = 100;
 
-    public final static BracePair EMPTY_BRACE_PAIR = new BracePair.BracePairBuilder()
+    public static final BracePair EMPTY_BRACE_PAIR = new BracePair.BracePairBuilder()
             .leftOffset(NON_OFFSET).rightOffset(NON_OFFSET).build();
 
     protected Editor editor;
@@ -66,7 +70,7 @@ abstract public class AbstractBracketHighlighter {
 
     public static final String BRACE_ATTR_GUTTER = "|";
 
-    public AbstractBracketHighlighter(Editor editor) {
+    protected AbstractBracketHighlighter(Editor editor) {
         this.editor = editor;
         this.project = this.editor.getProject();
         this.document = this.editor.getDocument();
@@ -245,18 +249,44 @@ abstract public class AbstractBracketHighlighter {
         EditorHighlighter editorHighlighter = ((EditorEx) editor).getHighlighter();
         boolean isBlockCaret = this.isBlockCaret();
         List<Pair<IElementType, IElementType>> braceTokens = this.getSupportedBraceToken();
-        for (Pair<IElementType, IElementType> braceToken : braceTokens) {
+        for (Pair<IElementType, IElementType> braceTokenPair : braceTokens) {
             HighlighterIterator leftTraverseIterator = editorHighlighter.createIterator(offset);
             HighlighterIterator rightTraverseIterator = editorHighlighter.createIterator(offset);
 
-            int leftBraceOffset = BraceMatchingUtilAdapter.findLeftBraceOffset(leftTraverseIterator,
-                    braceToken.getLeft(), this.fileText, this.fileType, isBlockCaret);
-            int rightBraceOffset = BraceMatchingUtilAdapter.findRightBraceOffset(rightTraverseIterator,
-                    braceToken.getRight(), this.fileText, this.fileType, isBlockCaret);
+            int leftBraceOffset = BracketMatchProcessorHolder.findLeftBraceOffset(leftTraverseIterator,
+                    braceTokenPair.getLeft(), this.fileText, this.fileType, isBlockCaret, offset);
+            int rightBraceOffset = BracketMatchProcessorHolder.findRightBraceOffset(rightTraverseIterator,
+                    braceTokenPair.getRight(), this.fileText, this.fileType, isBlockCaret, offset);
 
             if (leftBraceOffset != NON_OFFSET && rightBraceOffset != NON_OFFSET) {
-                return new BracePair.BracePairBuilder().leftType(braceToken.getLeft()).rightType(braceToken.getRight()).
-                        leftIterator(leftTraverseIterator).rightIterator(rightTraverseIterator).build();
+                if (braceTokenPair.getRight().equals(XmlTokenType.XML_TAG_END)) {
+                    HighlighterIterator leftIterator = editorHighlighter.createIterator(leftBraceOffset);
+                    HighlighterIterator rightIterator = editorHighlighter.createIterator(rightBraceOffset);
+                    String leftText = XmlSupportedToken.getLeftPartOnlyName(leftBraceOffset, leftIterator);
+                    String rightText = XmlSupportedToken.getRightPart(rightBraceOffset + 1, rightIterator, leftBraceOffset);
+                    return new BracePair.BracePairBuilder().leftType(braceTokenPair.getLeft())
+                            .rightType(braceTokenPair.getRight()).leftText(leftText).rightText(rightText)
+                            .leftOffset(leftBraceOffset).rightOffset(rightBraceOffset - rightText.length() + 1).build();
+                }
+
+                if (braceTokenPair.getRight().equals(XmlTokenType.XML_EMPTY_ELEMENT_END)) {
+                    HighlighterIterator leftIterator = editorHighlighter.createIterator(leftBraceOffset);
+                    String leftText = XmlSupportedToken.getLeftPartOnlyName(leftBraceOffset, leftIterator);
+                    String rightText = document.getText(new TextRange(rightTraverseIterator.getStart(),
+                            rightTraverseIterator.getEnd()));
+                    return new BracePair.BracePairBuilder().leftType(braceTokenPair.getLeft())
+                            .rightType(braceTokenPair.getRight()).leftText(leftText).rightText(rightText)
+                            .leftOffset(leftBraceOffset).rightOffset(rightTraverseIterator.getStart()).build();
+                }
+                if (braceTokenPair.getRight().equals(BraceTokenTypes.TEXT_TOKEN)) {
+                    String leftText = document.getText(new TextRange(leftBraceOffset, leftBraceOffset + 1));
+                    String rightText = document.getText(new TextRange(rightBraceOffset, rightBraceOffset + 1));
+                    return new BracePair.BracePairBuilder().leftType(braceTokenPair.getLeft())
+                            .rightType(braceTokenPair.getRight()).leftText(leftText).rightText(rightText)
+                            .leftOffset(leftBraceOffset).rightOffset(rightBraceOffset).build();
+                }
+                return new BracePair.BracePairBuilder().leftType(braceTokenPair.getLeft()).rightType(braceTokenPair.getRight())
+                                .leftIterator(leftTraverseIterator).rightIterator(rightTraverseIterator).build();
             }
         }
         return EMPTY_BRACE_PAIR;
@@ -277,7 +307,7 @@ abstract public class AbstractBracketHighlighter {
         HighlighterIterator iterator = editorHighlighter.createIterator(offset);
         IElementType type = iterator.getTokenType();
         boolean isBlockCaret = this.isBlockCaret();
-        if (!BraceMatchingUtilAdapter.isStringToken(type)) {
+        if (!BracketMatchProcessorHolder.isStringToken(type)) {
             return EMPTY_BRACE_PAIR;
         }
 
