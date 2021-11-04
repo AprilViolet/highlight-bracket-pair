@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>HighlightBracketPair</id>
     <name>HighlightBracketPair</name>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
     <vendor email="AprilEternityLT@gmail.com" url="https://github.com/AprilViolet">AprilViolet</vendor>
 
     <description><![CDATA[
@@ -13,6 +13,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.3.1</p>
+        <ul>
+            <li>
+                Feature:Support Idea2021.3
+            </li>
+        </ul>
         <p>1.3.0</p>
         <ul>
             <li>
@@ -37,13 +43,13 @@
         <p>1.0.1</p>
         <ul>
             <li>
-                Fix the bug that pops up every time you enter. #1
+                Fixed:Fix the bug that pops up every time you enter. #1
             </li>
         </ul>
         <p>1.0.0</p>
         <ul>
             <li>
-                Fixed some compatibility issues from project <a href="https://github.com/qeesung/HighlightBracketPair">HighlightBracketPair</a>.
+                Fixed:Fixed some compatibility issues from project <a href="https://github.com/qeesung/HighlightBracketPair">HighlightBracketPair</a>.
             </li>
         </ul>
     ]]>

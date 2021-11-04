@@ -6,6 +6,12 @@
 
 - More language support.
 
+## [1.3.1 - 2021.11.05]
+
+### Added
+
++ Feature:Support Idea2021.3
+
 ## [1.3.0 - 2021.09.22]
 
 ### Added
