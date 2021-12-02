@@ -4,42 +4,36 @@
         <value>
             <option name="FOREGROUND" value="FDFFDF"/>
             <option name="BACKGROUND" value="F64093"/>
-            <option name="FONT_TYPE" value="1"/>
         </value>
     </option>
     <option name="BRACKET_ATTR">
         <value>
             <option name="FOREGROUND" value="FA9196"/>
             <option name="BACKGROUND" value="3A3AFC"/>
-            <option name="FONT_TYPE" value="1"/>
         </value>
     </option>
     <option name="DOUBLE_QUOTE_ATTR">
         <value>
             <option name="FOREGROUND" value="FFA2A6"/>
             <option name="EFFECT_COLOR" value="3A9982"/>
-            <option name="FONT_TYPE" value="1"/>
         </value>
     </option>
     <option name="PARENTHESIS_ATTR">
         <value>
             <option name="FOREGROUND" value="FFA8AA"/>
             <option name="BACKGROUND" value="AC1A90"/>
-            <option name="FONT_TYPE" value="1"/>
         </value>
     </option>
     <option name="CUSP_BRACKETS_ATTR">
         <value>
             <option name="FOREGROUND" value="FF9B9E"/>
             <option name="BACKGROUND" value="F86940"/>
-            <option name="FONT_TYPE" value="1"/>
         </value>
     </option>
     <option name="BRACE_ATTR_GUTTER">
         <value>
             <option name="FOREGROUND" value="3A3AFC"/>
             <option name="BACKGROUND" value="3A3AFC"/>
-            <option name="FONT_TYPE" value="1"/>
         </value>
     </option>
 </list>
