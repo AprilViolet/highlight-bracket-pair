@@ -6,6 +6,13 @@
 
 - More language support.
 
+## [1.3.2 - 2021.12.02]
+
+### Fixed
+
++ Fixed:Support Idea2021.3. (#12 #13)
++ Fixed:The default color configuration does not take effect. (#11)
+
 ## [1.3.1 - 2021.11.05]
 
 ### Added
