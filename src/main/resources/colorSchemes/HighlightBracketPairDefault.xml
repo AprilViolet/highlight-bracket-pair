@@ -6,6 +6,12 @@
             <option name="BACKGROUND" value="F64093"/>
         </value>
     </option>
+    <option name="BRACE_ATTR_GUTTER">
+        <value>
+            <option name="FOREGROUND" value="CBEDFF"/>
+            <option name="BACKGROUND" value="3A3AFC"/>
+        </value>
+    </option>
     <option name="BRACKET_ATTR">
         <value>
             <option name="FOREGROUND" value="FA9196"/>
@@ -28,12 +34,6 @@
         <value>
             <option name="FOREGROUND" value="FF9B9E"/>
             <option name="BACKGROUND" value="F86940"/>
-        </value>
-    </option>
-    <option name="BRACE_ATTR_GUTTER">
-        <value>
-            <option name="FOREGROUND" value="3A3AFC"/>
-            <option name="BACKGROUND" value="3A3AFC"/>
         </value>
     </option>
 </list>
