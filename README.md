@@ -64,11 +64,10 @@ If you have any questions or get more information, you can go to <a href="https:
 **Preconditions**
 
 + **Note that the project is built on the LTS version of the JDK11.**
-+ **Build with gradle, the gradle version is the latest Gradle7.2**
++ **Build with gradle, the gradle version is the latest Gradle7.4.1**
 
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
-

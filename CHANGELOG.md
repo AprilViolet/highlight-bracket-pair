@@ -6,6 +6,12 @@
 
 - More language support.
 
+## [1.3.3 - 2022.03.19]
+
+### Fixed
+
++ Fixed:Support Idea2022.1 (#18)
+
 ## [1.3.2 - 2021.12.02]
 
 ### Fixed
@@ -53,4 +59,3 @@
 
 - Re combed and compatible with the latest version of idea.
 - Fork from [qeesung#HighlightBracketPair](https://github.com/qeesung/HighlightBracketPair)
-
