@@ -6,6 +6,12 @@
 
 - More language support.
 
+## [1.3.4 - 2022.04.12]
+
+### Fixed
+
++ Fixed:Support Idea2022.1 (#18)
+
 ## [1.3.3 - 2022.03.19]
 
 ### Fixed
