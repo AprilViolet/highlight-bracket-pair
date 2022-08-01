@@ -6,6 +6,12 @@
 
 - More language support.
 
+## [1.3.6 - 2022.08.01]
+
+### Fixed
+
++ Fixed:Fix the problem of the low version of the IDEA error. (#22)
+
 ## [1.3.5 - 2022.07.26]
 
 ### Fixed
