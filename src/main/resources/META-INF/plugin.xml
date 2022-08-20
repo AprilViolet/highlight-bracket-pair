@@ -105,7 +105,7 @@
         <colorSettingsPage implementation="cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettingsPage"/>
         <applicationConfigurable parentId="other"
                                  instance="cn.aprilviolet.highlightbracketpair.setting.BracketSettingsConfigurable"
-                                 id="org.intellij.sdk.settings.AppSettingsConfigurable" displayName="HighlightBracketPair"/>
+                                 id="cn.aprilviolet.highlightbracketpair.AppSettingsConfigurable" displayName="HighlightBracketPair"/>
         <applicationService serviceImplementation="cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettings"/>
     </extensions>
 
