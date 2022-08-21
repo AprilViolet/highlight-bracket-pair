@@ -6,6 +6,14 @@
 
 - More language support.
 
+## [1.3.7 - 2022.08.21]
+
+### Fixed
+
++ Fixed:Fix configuration menu plugin compatibility.
+
+- More language support.
+
 ## [1.3.6 - 2022.08.01]
 
 ### Fixed
