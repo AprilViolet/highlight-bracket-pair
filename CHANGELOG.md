@@ -6,13 +6,17 @@
 
 - More language support.
 
+## [1.3.8 - 2022.11.27]
+
+### Fixed
+
++ Fixed:Support Idea2022.3.
+
 ## [1.3.7 - 2022.08.21]
 
 ### Fixed
 
 + Fixed:Fix configuration menu plugin compatibility.
-
-- More language support.
 
 ## [1.3.6 - 2022.08.01]
 
