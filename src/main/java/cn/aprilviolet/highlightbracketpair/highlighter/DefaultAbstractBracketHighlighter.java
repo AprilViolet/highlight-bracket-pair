@@ -21,9 +21,9 @@ import java.util.Map;
  * Default Brace Highlighter to highlight all supported brace pair.
  *
  * @author AprilViolet
- * @version V1.0.0
+ * @version v1.0.0
  * @date 2021.07.31 14:52
- * @since V1.0.0
+ * @since v1.0.0
  */
 public class DefaultAbstractBracketHighlighter extends AbstractBracketHighlighter {
     /**

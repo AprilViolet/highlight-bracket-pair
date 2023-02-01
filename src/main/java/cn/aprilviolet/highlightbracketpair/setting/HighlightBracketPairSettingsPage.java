@@ -22,9 +22,9 @@ import static cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes.DOUBLE_Q
  * Color settings for different bracket pair shape.
  *
  * @author AprilViolet
- * @version V1.0.0
+ * @version v1.0.0
  * @date 2021.07.31 11:02
- * @since V1.0.0
+ * @since v1.0.0
  */
 public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     public static final TextAttributesKey BRACE_ATTR = TextAttributesKey.createTextAttributesKey("BRACE_ATTR");

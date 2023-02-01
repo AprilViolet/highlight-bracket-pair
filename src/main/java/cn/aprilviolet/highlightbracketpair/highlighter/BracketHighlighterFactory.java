@@ -10,9 +10,9 @@ import com.intellij.psi.PsiFile;
  * Factory to get the {@link AbstractBracketHighlighter} instance according to the editor.
  *
  * @author AprilViolet
- * @version V1.0.0
+ * @version v1.0.0
  * @date 2021.07.31 14:54
- * @since V1.0.0
+ * @since v1.0.0
  */
 public class BracketHighlighterFactory {
     private BracketHighlighterFactory() {

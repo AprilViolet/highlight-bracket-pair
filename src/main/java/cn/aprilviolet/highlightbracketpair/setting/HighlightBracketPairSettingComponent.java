@@ -43,7 +43,7 @@ public class HighlightBracketPairSettingComponent {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.weightx = 1;
         constraints.weighty = 1;
-        constraints.insets = JBUI.insets(10, 10, 10, 10);
+        constraints.insets = JBUI.insets(10);
         constraints.gridx = 0;
 
         JBLabel bracketGutterLabel = new JBLabel("Bracket size in gutter");

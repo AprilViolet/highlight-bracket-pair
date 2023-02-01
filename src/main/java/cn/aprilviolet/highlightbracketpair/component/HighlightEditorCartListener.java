@@ -22,9 +22,9 @@ import java.util.List;
  * Highlight editor component to highlight the most left brace and most right brace when the current caret is change.
  *
  * @author AprilViolet
- * @version V1.0.0
- * @date 2021.07.30 星期五 17:16
- * @since V1.0.0
+ * @version v1.0.0
+ * @date 2021.07.30 17:16
+ * @since v1.0.0
  */
 public class HighlightEditorCartListener implements CaretListener {
     private final Editor editor;

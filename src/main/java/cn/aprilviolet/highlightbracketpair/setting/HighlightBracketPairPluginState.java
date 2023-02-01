@@ -4,9 +4,9 @@ package cn.aprilviolet.highlightbracketpair.setting;
  * The status class for configuring color settings in Idea
  *
  * @author AprilViolet
- * @version V1.1.0
+ * @version v1.1.0
  * @date 2021.07.31 11:02
- * @since V1.0.0
+ * @since v1.0.0
  */
 public class HighlightBracketPairPluginState {
     /**

@@ -7,14 +7,13 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Listener when the editor is constructed: listen for the opening and closing of the editing panel, etc.
- *
  * The highlighted brackets are responsible for some initialization operations for application components,
  * such as registering editor event listeners, checking plug-in updates, etc.
  *
  * @author AprilViolet
- * @version V1.0.0
+ * @version v1.0.0
  * @date 2021.07.30 17:16
- * @since V1.0.0
+ * @since v1.0.0
  */
 public class HighlightBracketPairEditFactoryListener implements EditorFactoryListener {
     /**

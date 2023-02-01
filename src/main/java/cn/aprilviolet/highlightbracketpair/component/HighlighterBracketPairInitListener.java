@@ -14,9 +14,9 @@ import org.jetbrains.annotations.NotNull;
  * Listener when opening the project.
  *
  * @author AprilViolet
- * @version V1.0.0
+ * @version v1.0.0
  * @date 2021.07.30 17:16
- * @since V1.0.0
+ * @since v1.0.0
  */
 public class HighlighterBracketPairInitListener implements ProjectManagerListener {
     /**

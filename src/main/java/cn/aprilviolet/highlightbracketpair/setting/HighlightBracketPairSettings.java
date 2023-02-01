@@ -12,9 +12,9 @@ import org.jetbrains.annotations.Nullable;
  * Setting class for configuring colors in Idea
  *
  * @author AprilViolet
- * @version V1.0.0
+ * @version v1.0.0
  * @date 2021.07.31 11:02
- * @since V1.0.0
+ * @since v1.0.0
  */
 @State(
         name = "HighlightBracketPairSettings",

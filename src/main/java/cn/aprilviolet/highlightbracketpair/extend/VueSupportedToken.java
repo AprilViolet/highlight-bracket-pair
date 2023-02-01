@@ -14,7 +14,7 @@ import java.util.Map;
  * @author AprilViolet
  * @version v1.0.0
  * @date 2021.09.21 16:03
- * @since v1.0.0
+ * @since v1.3.0
  */
 public class VueSupportedToken extends CustomSupportedToken {
     @Override
