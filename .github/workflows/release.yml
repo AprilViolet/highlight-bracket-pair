@@ -44,7 +44,7 @@ jobs:
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
 
-          echo "::set-output name=changelog::$CHANGELOG"
+          echo "changelog=$CHANGELOG" >> $GITHUB_OUTPUT
 
       # Publish the plugin to the Marketplace
       - name: Publish Plugin
