@@ -34,7 +34,7 @@ public class EditorHighlightEditorEntity {
     }
 
     /**
-     * 添加
+     * add HighlightEditorCartListener
      *
      * @param key key
      * @param value value
@@ -44,17 +44,7 @@ public class EditorHighlightEditorEntity {
     }
 
     /**
-     * 获取
-     *
-     * @param key key
-     * @return value
-     */
-    public HighlightEditorCartListener getValue(Editor key) {
-        return editorHighlightEditorComponentMap.get(key);
-    }
-
-    /**
-     * 清除
+     * remove value
      *
      * @param key key
      */
@@ -62,12 +52,15 @@ public class EditorHighlightEditorEntity {
         return editorHighlightEditorComponentMap.remove(key);
     }
 
+    /**
+     * clear HighlightEditorCartListener
+     */
     public void clearValue() {
         editorHighlightEditorComponentMap.clear();
     }
 
     /**
-     * 获取editorHighlightEditorComponentMap
+     * get editorHighlightEditorComponentMap
      *
      * @return editorHighlightEditorComponentMap
      */

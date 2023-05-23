@@ -6,6 +6,16 @@
 
 - More language support.
 
+## [1.4.0 - 2023.05.23]
+
+### Fixed
+
++ Fixed:Support Idea2023.2
+
+### Changed
+
++ Changed:Upgrade the minimum JDK version to 17 and the minimum idea version to 2023.1
+
 ## [1.3.9 - 2023.03.14]
 
 ### Fixed

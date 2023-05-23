@@ -13,6 +13,15 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.4.0</p>
+        <ul>
+            <li>
+                Fixed:Support Idea2023.2
+            </li>
+            <li>
+                Changed:Upgrade the minimum JDK version to 17 and the minimum idea version to 2023.1
+            </li>
+        </ul>
         <p>1.3.9</p>
         <ul>
             <li>
@@ -125,6 +134,9 @@
                                  instance="cn.aprilviolet.highlightbracketpair.setting.BracketSettingsConfigurable"
                                  id="cn.aprilviolet.highlightbracketpair.AppSettingsConfigurable" displayName="HighlightBracketPair"/>
         <applicationService serviceImplementation="cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettings"/>
+
+        <postStartupActivity implementation="cn.aprilviolet.highlightbracketpair.component.HighlightBracketPairNotificationStartupActivity"
+                             id="HighlightBracketPairNotificationStartupActivity" order="last"/>
     </extensions>
 
     <actions>
