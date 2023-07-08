@@ -17,6 +17,7 @@ version = properties("pluginVersion").get()
 
 repositories {
     mavenLocal()
+    mavenCentral()
     maven(url = "https://maven.aliyun.com/repository/public")
     maven(url = "https://www.jetbrains.com/intellij-repository/releases")
     maven(url = "https://www.jetbrains.com/intellij-repository/snapshots")
