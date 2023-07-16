@@ -13,6 +13,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.4.2</p>
+        <ul>
+            <li>
+                Changed:Upgrade the template to v1.9.0
+            </li>
+        </ul>
         <p>1.4.1</p>
         <ul>
             <li>

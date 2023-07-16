@@ -6,6 +6,12 @@
 
 - More language support.
 
+## [1.4.2 - 2023.07.16]
+
+### Fixed
+
++ Upgrade the template to v1.9.0
+
 ## [1.4.1 - 2023.07.08]
 
 ### Fixed
