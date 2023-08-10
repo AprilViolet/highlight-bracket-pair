@@ -23,7 +23,7 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      # Setup Java environment for the next steps
+      # Set up Java environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
