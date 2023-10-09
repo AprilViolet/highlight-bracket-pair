@@ -34,7 +34,7 @@ jobs:
 
       # Check out current repository
       - name: Fetch Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Validate wrapper
       - name: Gradle Wrapper Validation
@@ -98,7 +98,7 @@ jobs:
 
       # Check out current repository
       - name: Fetch Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       # Set up Java environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -150,7 +150,7 @@ jobs:
 
       # Check out current repository
       - name: Fetch Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up Java environment for the next steps
       - name: Setup Java
@@ -161,7 +161,7 @@ jobs:
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
-        uses: JetBrains/qodana-action@v2023.2.1
+        uses: JetBrains/qodana-action@v2023.2.6
         with:
           cache-default-branch-only: true
 
@@ -181,7 +181,7 @@ jobs:
 
       # Check out current repository
       - name: Fetch Sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up Java environment for the next steps
       - name: Setup Java

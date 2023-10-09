@@ -13,16 +13,13 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <p>1.4.3</p>
-        <ul>
-            <li>
-                Changed:Upgrade the template to v1.11.0
-            </li>
-        </ul>
         <p>1.4.2</p>
         <ul>
             <li>
-                Changed:Upgrade the template to v1.9.0
+                Upgrade the template to v1.11.2
+            </li>
+            <li>
+                Support Idea2023.3.*
             </li>
         </ul>
         <p>1.4.1</p>
