@@ -6,6 +6,13 @@
 
 - More language support.
 
+## [1.4.3 - 2024.02.25]
+
+### Fixed
+
++ Upgrade the template to v1.12.0
++ Support Idea2024.1.*
+
 ## [1.4.2 - 2023.10.09]
 
 ### Fixed
