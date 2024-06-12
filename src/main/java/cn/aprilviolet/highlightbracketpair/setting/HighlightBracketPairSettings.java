@@ -78,4 +78,20 @@ public class HighlightBracketPairSettings implements PersistentStateComponent<Hi
     public void setGutterBracketSize(String bracketGutterEnable) {
         highlightBracketPairPluginState.setGutterBracketSize(bracketGutterEnable);
     }
+
+    public Boolean getHighlightXmlFlag() {
+        return highlightBracketPairPluginState.getHighlightXmlFlag();
+    }
+
+    public void setHighlightXmlFlag(Boolean highlightXmlFlag) {
+        highlightBracketPairPluginState.setHighlightXmlFlag(highlightXmlFlag);
+    }
+
+    public Boolean getHighlightVueFlag() {
+        return highlightBracketPairPluginState.getHighlightVueFlag();
+    }
+
+    public void setHighlightVueFlag(Boolean highlightVueFlag) {
+        highlightBracketPairPluginState.setHighlightVueFlag(highlightVueFlag);
+    }
 }

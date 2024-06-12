@@ -37,11 +37,11 @@ public class HighlightBracketPairNotificationStartupActivity implements ProjectA
                 settings.setPluginVersion(getPlugin().getVersion());
                 if (updateNotificationShown) {
                     String content = """
-                            ❤Thank you for downloading HighlightBracketPair v"""
+                            Thank you for downloading HighlightBracketPair v"""
                             + settings.getPluginVersion() +
                             """
                             <br/>
-                            🐞If you run into any problem, <b><a href="https://github.com/AprilViolet/highlight-bracket-pair">feel free to raise a issue</a>.</b>
+                            If you run into any problem, <b><a href="https://github.com/AprilViolet/highlight-bracket-pair">feel free to raise a issue</a>.</b>
                             """;
                     NotificationGroupManager.getInstance().getNotificationGroup("HighlighterBracketPairNotification")
                             .createNotification(content, NotificationType.INFORMATION).notify(project);

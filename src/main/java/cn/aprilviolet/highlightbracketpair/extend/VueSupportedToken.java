@@ -57,8 +57,7 @@ public class VueSupportedToken extends CustomSupportedToken {
             return vueSupportedToken;
         }
 
-        public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language, List<Pair<IElementType,
-                IElementType>>> languagePairsMap) {
+        public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language, List<Pair<IElementType, IElementType>>> languagePairsMap) {
             return vueSupportedToken.addSupported(languagePairsMap);
         }
     }

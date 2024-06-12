@@ -1,9 +1,9 @@
 package cn.aprilviolet.highlightbracketpair.setting;
 
+import com.intellij.openapi.ui.DialogPanel;
 import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.components.JBCheckBox;
 import com.intellij.ui.components.JBLabel;
-import com.intellij.ui.components.JBPanel;
 import com.intellij.ui.components.JBTextField;
 import com.intellij.util.ui.FormBuilder;
 import com.intellij.util.ui.JBUI;
@@ -23,7 +23,7 @@ public class HighlightBracketPairSettingComponent {
     /**
      * setting main panel
      */
-    private final JBPanel bracketMainPanel;
+    private final DialogPanel bracketMainPanel = new DialogPanel();
 
     /**
      * Open render bracket in gutter
@@ -31,33 +31,43 @@ public class HighlightBracketPairSettingComponent {
     private final JBCheckBox bracketGutterEnable = new JBCheckBox("Open render bracket in gutter");
 
     /**
-     * Set bracket size for gutter"
+     * Set bracket size for gutter
      */
-    private final JBTextField bracketGutterSizeText = new JBTextField();
+    private final JBTextField bracketGutterSizeText = new JBTextField(5);
+
+    /**
+     * Open render bracket in gutter
+     */
+    private final JBCheckBox highlightXmlBox = new JBCheckBox("Open render in Xml");
+
+    /**
+     * Open render bracket in gutter
+     */
+    private final JBCheckBox highlightVueBox = new JBCheckBox("Open render in Vue");
 
     public HighlightBracketPairSettingComponent() {
-        bracketMainPanel = new JBPanel();
         bracketMainPanel.setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.NORTH;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.weightx = 1;
-        constraints.weighty = 1;
-        constraints.insets = JBUI.insets(10);
-        constraints.gridx = 0;
-
         JBLabel bracketGutterLabel = new JBLabel("Bracket size in gutter");
-        JPanel bracketGutterPanel = FormBuilder.createFormBuilder()
-                .addComponent(bracketGutterEnable, 1)
+        JPanel bracketPanel = FormBuilder.createFormBuilder()
+                .addComponent(bracketGutterEnable, 0)
                 .addLabeledComponent(bracketGutterLabel, bracketGutterSizeText, 1, false)
                 .getPanel();
-        bracketGutterPanel.setBorder(IdeBorderFactory.createTitledBorder("Bracket In Gutter"));
+        bracketPanel.setBorder(IdeBorderFactory.createTitledBorder("Bracket In Gutter"));
 
-        constraints.gridy = 0;
-        bracketMainPanel.add(bracketGutterPanel, constraints);
+        bracketMainPanel.add(bracketPanel, new GridBagConstraints(0, 0, 1, 1, 10, 10,
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, JBUI.insets(0, 0 , 0 ,0), 0, 0));
+
+        JPanel optionsSettingPanel = FormBuilder.createFormBuilder()
+                .addComponent(highlightXmlBox, 0)
+                .addComponent(highlightVueBox, 0)
+                .getPanel();
+        optionsSettingPanel.setBorder(IdeBorderFactory.createTitledBorder("Options Setting"));
+
+        bracketMainPanel.add(optionsSettingPanel, new GridBagConstraints(0, 2, 1, 1, 10, 10,
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, JBUI.insets(0, 0 , 0 ,0), 0, 0));
     }
 
-    public JPanel getBracketMainPanel() {
+    public DialogPanel getBracketMainPanel() {
         return bracketMainPanel;
     }
 
@@ -75,5 +85,21 @@ public class HighlightBracketPairSettingComponent {
 
     public void setBracketGutterSizeText(String bracketGutterSize) {
         bracketGutterSizeText.setText(bracketGutterSize);
+    }
+
+    public Boolean getHighlightXmlFlag() {
+        return highlightXmlBox.isSelected();
+    }
+
+    public void setHighlightXmlFlag(boolean newStatus) {
+        highlightXmlBox.setSelected(newStatus);
+    }
+
+    public Boolean getHighlightVueFlag() {
+        return highlightVueBox.isSelected();
+    }
+
+    public void setHighlightVueFlag(boolean newStatus) {
+        highlightVueBox.setSelected(newStatus);
     }
 }

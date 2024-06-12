@@ -127,8 +127,7 @@ public class XmlSupportedToken extends CustomSupportedToken {
             return xmlSupportedToken;
         }
 
-        public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language, List<Pair<IElementType,
-                IElementType>>> map) {
+        public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language, List<Pair<IElementType, IElementType>>> map) {
             return xmlSupportedToken.addSupported(map);
         }
     }

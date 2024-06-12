@@ -16,9 +16,9 @@ import javax.swing.*;
  * @since v1.0.0
  */
 public class BracketSettingsConfigurable implements Configurable {
-    private HighlightBracketPairSettingComponent highlightBracketPairSettingComponent;
+    private HighlightBracketPairSettingComponent pairSettingComponent;
 
-    private final HighlightBracketPairSettings highlightBracketPairSettings = HighlightBracketPairSettings.getInstance();
+    private final HighlightBracketPairSettings bracketPairSettings = HighlightBracketPairSettings.getInstance();
 
     /**
      * Returns the visible name of the configurable component.
@@ -44,8 +44,8 @@ public class BracketSettingsConfigurable implements Configurable {
      */
     @Override
     public @Nullable JComponent createComponent() {
-        highlightBracketPairSettingComponent = new HighlightBracketPairSettingComponent();
-        return highlightBracketPairSettingComponent.getBracketMainPanel();
+        pairSettingComponent = new HighlightBracketPairSettingComponent();
+        return pairSettingComponent.getBracketMainPanel();
     }
 
     /**
@@ -56,10 +56,10 @@ public class BracketSettingsConfigurable implements Configurable {
      */
     @Override
     public boolean isModified() {
-        return !highlightBracketPairSettingComponent.getBracketGutterEnable()
-                .equals(highlightBracketPairSettings.getBracketGutterEnable()) ||
-                !highlightBracketPairSettingComponent.getBracketGutterSizeText()
-                        .equals(highlightBracketPairSettings.getGutterBracketSize());
+        return !pairSettingComponent.getBracketGutterEnable().equals(bracketPairSettings.getBracketGutterEnable())
+                || !pairSettingComponent.getBracketGutterSizeText().equals(bracketPairSettings.getGutterBracketSize())
+                || !pairSettingComponent.getHighlightVueFlag().equals(bracketPairSettings.getHighlightVueFlag())
+                || !pairSettingComponent.getHighlightXmlFlag().equals(bracketPairSettings.getHighlightXmlFlag());
     }
 
     /**
@@ -69,10 +69,12 @@ public class BracketSettingsConfigurable implements Configurable {
      */
     @Override
     public void apply() {
-        highlightBracketPairSettings.setBracketGutterEnable(highlightBracketPairSettingComponent.getBracketGutterEnable());
-        if (StringUtils.isNumeric(highlightBracketPairSettingComponent.getBracketGutterSizeText())) {
-            highlightBracketPairSettings.setGutterBracketSize(highlightBracketPairSettingComponent.getBracketGutterSizeText());
+        bracketPairSettings.setBracketGutterEnable(pairSettingComponent.getBracketGutterEnable());
+        if (StringUtils.isNumeric(pairSettingComponent.getBracketGutterSizeText())) {
+            bracketPairSettings.setGutterBracketSize(pairSettingComponent.getBracketGutterSizeText());
         }
+        bracketPairSettings.setHighlightVueFlag(pairSettingComponent.getHighlightVueFlag());
+        bracketPairSettings.setHighlightXmlFlag(pairSettingComponent.getHighlightXmlFlag());
     }
 
     /**
@@ -81,7 +83,9 @@ public class BracketSettingsConfigurable implements Configurable {
      */
     @Override
     public void reset() {
-        highlightBracketPairSettingComponent.setBracketGutterEnable(highlightBracketPairSettings.getBracketGutterEnable());
-        highlightBracketPairSettingComponent.setBracketGutterSizeText(highlightBracketPairSettings.getGutterBracketSize());
+        pairSettingComponent.setBracketGutterEnable(bracketPairSettings.getBracketGutterEnable());
+        pairSettingComponent.setBracketGutterSizeText(bracketPairSettings.getGutterBracketSize());
+        pairSettingComponent.setHighlightVueFlag(bracketPairSettings.getHighlightVueFlag());
+        pairSettingComponent.setHighlightXmlFlag(bracketPairSettings.getHighlightXmlFlag());
     }
 }

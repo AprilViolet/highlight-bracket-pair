@@ -77,6 +77,7 @@ public class HighlightEditorCartListener implements CaretListener {
             highlighterList.add(highlighterEntry.getRight());
         }
 
+        // render highlight in gutter
         if (Boolean.TRUE.equals(highlightBracketPairSettings.getBracketGutterEnable())) {
             // clear braces in gutter
             highlighter.eraseHighlight(gutterHighlighterList);

@@ -16,7 +16,8 @@ public class HighlightBracketPairPluginState {
 
     /**
      * turn on rendering brackets in gutter
-     * true:open false:close
+     * true: open
+     * false: close
      */
     private Boolean bracketGutterEnable = Boolean.TRUE;
 
@@ -24,6 +25,21 @@ public class HighlightBracketPairPluginState {
      * customize bracket in gutter size
      */
     private String gutterBracketSize = "14";
+
+    /**
+     * turn on render bracket in xml language
+     * true: open
+     * false: close
+     */
+    private Boolean highlightXmlFlag = Boolean.TRUE;
+
+
+    /**
+     * turn on render bracket in vue language
+     * true: open
+     * false: close
+     */
+    private Boolean highlightVueFlag = Boolean.TRUE;
 
     public String getPluginVersion() {
         return pluginVersion;
@@ -47,5 +63,21 @@ public class HighlightBracketPairPluginState {
 
     public void setGutterBracketSize(String gutterBracketSize) {
         this.gutterBracketSize = gutterBracketSize;
+    }
+
+    public Boolean getHighlightXmlFlag() {
+        return highlightXmlFlag;
+    }
+
+    public void setHighlightXmlFlag(Boolean highlightXmlFlag) {
+        this.highlightXmlFlag = highlightXmlFlag;
+    }
+
+    public Boolean getHighlightVueFlag() {
+        return highlightVueFlag;
+    }
+
+    public void setHighlightVueFlag(Boolean highlightVueFlag) {
+        this.highlightVueFlag = highlightVueFlag;
     }
 }
