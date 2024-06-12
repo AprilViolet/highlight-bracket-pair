@@ -13,6 +13,18 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.5.0</p>
+        <ul>
+            <li>
+                Upgrade the template to v1.14.0
+            </li>
+            <li>
+                Support Idea2024.2.*
+            </li>
+            <li>
+                Customize whether to highlight in xml and vue
+            </li>
+        </ul>
         <p>1.4.3</p>
         <ul>
             <li>
