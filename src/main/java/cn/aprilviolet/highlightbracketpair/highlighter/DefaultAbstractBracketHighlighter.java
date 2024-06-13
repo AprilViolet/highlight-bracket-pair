@@ -10,6 +10,7 @@ import com.intellij.lang.LanguageBraceMatching;
 import com.intellij.lang.PairedBraceMatcher;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.tree.IElementType;
+import org.apache.commons.collections.CollectionUtils;
 
 import java.util.*;
 
@@ -53,18 +54,23 @@ public class DefaultAbstractBracketHighlighter extends AbstractBracketHighlighte
     @Override
     public List<Pair<IElementType, IElementType>> getSupportedBraceToken() {
         Language language = this.psiFile.getLanguage();
+        List<Pair<IElementType, IElementType>> braceList = LANGUAGE_BRACE_PAIRS.get(language);
+        boolean emptyFlag = CollectionUtils.isEmpty(braceList);
         if (Boolean.TRUE.equals(bracketPairSettings.getHighlightXmlFlag())) {
-            XmlSupportedToken.Singleton.INSTANCE.addSupported(LANGUAGE_BRACE_PAIRS);
+            if (emptyFlag) {
+                XmlSupportedToken.Singleton.INSTANCE.addSupported(language, LANGUAGE_BRACE_PAIRS);
+            }
         } else {
-            LANGUAGE_BRACE_PAIRS.remove(language);
+            XmlSupportedToken.Singleton.INSTANCE.removeSupported(language, LANGUAGE_BRACE_PAIRS);
         }
         if (Boolean.TRUE.equals(bracketPairSettings.getHighlightVueFlag())) {
-            VueSupportedToken.Singleton.INSTANCE.addSupported(LANGUAGE_BRACE_PAIRS);
+            if (emptyFlag) {
+                VueSupportedToken.Singleton.INSTANCE.addSupported(language, LANGUAGE_BRACE_PAIRS);
+            }
         } else {
-            LANGUAGE_BRACE_PAIRS.remove(language);
+            VueSupportedToken.Singleton.INSTANCE.removeSupported(language, LANGUAGE_BRACE_PAIRS);
         }
-
-        List<Pair<IElementType, IElementType>> braceList = LANGUAGE_BRACE_PAIRS.get(language);
+        braceList = LANGUAGE_BRACE_PAIRS.get(language);
         return braceList == null ? new ArrayList<>() : braceList;
     }
 

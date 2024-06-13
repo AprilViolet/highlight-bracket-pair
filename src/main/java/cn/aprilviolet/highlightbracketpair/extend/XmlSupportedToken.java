@@ -8,12 +8,9 @@ import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.xml.XmlTokenType;
+import org.apache.commons.collections.CollectionUtils;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Customer Xml support Bracket
@@ -24,6 +21,35 @@ import java.util.Map;
  * @since v1.3.0
  */
 public class XmlSupportedToken extends CustomSupportedToken {
+    public static final String XML = "XML";
+
+    @Override
+    public List<Pair<IElementType, IElementType>> addSupported(Map<Language, List<Pair<IElementType, IElementType>>> languagePairsMap) {
+        Language xml = Language.findLanguageByID("XML");
+        if (xml == null) {
+            return new ArrayList<>();
+        }
+
+        List<Pair<IElementType, IElementType>> pairList = languagePairsMap.getOrDefault(xml, new ArrayList<>());
+        if (CollectionUtils.isEmpty(pairList)) {
+            pairList.add(new Pair<>(XmlTokenType.XML_START_TAG_START, XmlTokenType.XML_TAG_END));
+            pairList.add(new Pair<>(XmlTokenType.XML_ATTRIBUTE_VALUE_START_DELIMITER,
+                    XmlTokenType.XML_ATTRIBUTE_VALUE_END_DELIMITER));
+            pairList.add(new Pair<>(XmlTokenType.XML_START_TAG_START, XmlTokenType.XML_EMPTY_ELEMENT_END));
+            pairList.add(new Pair<>(BraceTokenTypes.TEXT_TOKEN, BraceTokenTypes.TEXT_TOKEN));
+            languagePairsMap.put(xml, pairList);
+            for (Language subLanguage : xml.getDialects()) {
+                List<Pair<IElementType, IElementType>> pairs = languagePairsMap.get(subLanguage);
+                if (pairs != null) {
+                    pairs.addAll(pairList);
+                } else {
+                    languagePairsMap.put(subLanguage, pairList);
+                }
+            }
+        }
+        return pairList;
+    }
+
     public static String getLeftPart(int start, HighlighterIterator iterator) {
         int tagNameEnd = 0;
         Document document = iterator.getDocument();
@@ -82,35 +108,6 @@ public class XmlSupportedToken extends CustomSupportedToken {
         return "";
     }
 
-    @Override
-    public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language, List<Pair<IElementType,
-            IElementType>>> languagePairsMap) {
-        Language xml = Language.findLanguageByID("XML");
-        if (xml == null) {
-            return languagePairsMap;
-        }
-
-        List<Pair<IElementType, IElementType>> pairList = languagePairsMap.get(xml);
-        if (pairList == null) {
-            pairList = new ArrayList<>();
-            pairList.add(new Pair<>(XmlTokenType.XML_START_TAG_START, XmlTokenType.XML_TAG_END));
-            pairList.add(new Pair<>(XmlTokenType.XML_ATTRIBUTE_VALUE_START_DELIMITER,
-                    XmlTokenType.XML_ATTRIBUTE_VALUE_END_DELIMITER));
-            pairList.add(new Pair<>(XmlTokenType.XML_START_TAG_START, XmlTokenType.XML_EMPTY_ELEMENT_END));
-            pairList.add(new Pair<>(BraceTokenTypes.TEXT_TOKEN, BraceTokenTypes.TEXT_TOKEN));
-            languagePairsMap.put(xml, pairList);
-            for (Language subLanguage : xml.getDialects()) {
-                List<Pair<IElementType, IElementType>> pairs = languagePairsMap.get(subLanguage);
-                if (pairs != null) {
-                    pairs.addAll(pairList);
-                } else {
-                    languagePairsMap.put(subLanguage, pairList);
-                }
-            }
-        }
-        return languagePairsMap;
-    }
-
     public enum Singleton {
         /**
          * Enumeration singleton
@@ -127,8 +124,16 @@ public class XmlSupportedToken extends CustomSupportedToken {
             return xmlSupportedToken;
         }
 
-        public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language, List<Pair<IElementType, IElementType>>> map) {
-            return xmlSupportedToken.addSupported(map);
+        public void addSupported(Language language, Map<Language, List<Pair<IElementType, IElementType>>> map) {
+            if (XML.equalsIgnoreCase(language.getID())) {
+                xmlSupportedToken.addSupported(map);
+            }
+        }
+
+        public void removeSupported(Language language, Map<Language, List<Pair<IElementType, IElementType>>> map) {
+            if (XML.equalsIgnoreCase(language.getID())) {
+                map.remove(language);
+            }
         }
     }
 }

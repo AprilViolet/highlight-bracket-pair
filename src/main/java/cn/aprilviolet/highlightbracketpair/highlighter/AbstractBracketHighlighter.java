@@ -184,8 +184,8 @@ public abstract class AbstractBracketHighlighter {
     /**
      * Render braces in gutter
      *
-     * @param braceLine brace line
-     * @param braceText brace text
+     * @param braceLine      brace line
+     * @param braceText      brace text
      * @param textAttributes text
      * @return RangeHighlighter
      */
@@ -286,7 +286,7 @@ public abstract class AbstractBracketHighlighter {
                             .leftOffset(leftBraceOffset).rightOffset(rightBraceOffset).build();
                 }
                 return new BracePair.BracePairBuilder().leftType(braceTokenPair.getLeft()).rightType(braceTokenPair.getRight())
-                                .leftIterator(leftTraverseIterator).rightIterator(rightTraverseIterator).build();
+                        .leftIterator(leftTraverseIterator).rightIterator(rightTraverseIterator).build();
             }
         }
         return EMPTY_BRACE_PAIR;

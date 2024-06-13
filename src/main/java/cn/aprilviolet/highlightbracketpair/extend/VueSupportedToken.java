@@ -17,12 +17,13 @@ import java.util.Map;
  * @since v1.3.0
  */
 public class VueSupportedToken extends CustomSupportedToken {
+    public static final String VUE = "VUE";
+
     @Override
-    public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language,
-            List<Pair<IElementType, IElementType>>> languagePairsMap) {
+    public List<Pair<IElementType, IElementType>> addSupported(Map<Language, List<Pair<IElementType, IElementType>>> languagePairsMap) {
         Language vue = Language.findLanguageByID("Vue");
         if (vue == null) {
-            return languagePairsMap;
+            return new ArrayList<>();
         }
         List<Pair<IElementType, IElementType>> vueJsPairList = languagePairsMap.get(Language.findLanguageByID("VueJS"));
         List<Pair<IElementType, IElementType>> xmlPairList = languagePairsMap.get(Language.findLanguageByID("XML"));
@@ -38,7 +39,7 @@ public class VueSupportedToken extends CustomSupportedToken {
             vuePairList.addAll(cssPairList);
         }
         languagePairsMap.put(vue, vuePairList);
-        return languagePairsMap;
+        return vuePairList;
     }
 
     public enum Singleton {
@@ -57,8 +58,16 @@ public class VueSupportedToken extends CustomSupportedToken {
             return vueSupportedToken;
         }
 
-        public Map<Language, List<Pair<IElementType, IElementType>>> addSupported(Map<Language, List<Pair<IElementType, IElementType>>> languagePairsMap) {
-            return vueSupportedToken.addSupported(languagePairsMap);
+        public void addSupported(Language language, Map<Language, List<Pair<IElementType, IElementType>>> map) {
+            if (VUE.equalsIgnoreCase(language.getID())) {
+                vueSupportedToken.addSupported(map);
+            }
+        }
+
+        public void removeSupported(Language language, Map<Language, List<Pair<IElementType, IElementType>>> map) {
+            if (VUE.equalsIgnoreCase(language.getID())) {
+                map.remove(language);
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ public class EditorHighlightEditorEntity {
     /**
      * add HighlightEditorCartListener
      *
-     * @param key key
+     * @param key   key
      * @param value value
      */
     public void putValue(Editor key, HighlightEditorCartListener value) {
