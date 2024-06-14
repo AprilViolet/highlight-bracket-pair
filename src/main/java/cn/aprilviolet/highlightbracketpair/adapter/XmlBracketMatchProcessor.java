@@ -32,8 +32,7 @@ public class XmlBracketMatchProcessor implements BracketMatchProcessor {
      * @return offset
      */
     @Override
-    public int findLeftParen(HighlighterIterator iterator, IElementType lparenTokenType, CharSequence fileText,
-                             FileType fileType, boolean isBlockCaret, Integer offset) {
+    public int findLeftParen(HighlighterIterator iterator, IElementType lparenTokenType, CharSequence fileText, FileType fileType, boolean isBlockCaret, Integer offset) {
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
         Deque<IElementType> braceStack = new ArrayDeque<>();
         if (iterator.getTokenType().equals(XmlTokenType.XML_DATA_CHARACTERS)) {
@@ -84,8 +83,7 @@ public class XmlBracketMatchProcessor implements BracketMatchProcessor {
      * @return offset
      */
     @Override
-    public int findRightParen(HighlighterIterator iterator, IElementType rparenTokenType, CharSequence fileText,
-                              FileType fileType, boolean isBlockCaret, Integer offset) {
+    public int findRightParen(HighlighterIterator iterator, IElementType rparenTokenType, CharSequence fileText, FileType fileType, boolean isBlockCaret, Integer offset) {
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
         if (iterator.getTokenType().equals(XmlTokenType.XML_DATA_CHARACTERS)) {
             int rightParen = BracketMatchProcessorHolder.findRightParen(fileText, offset);

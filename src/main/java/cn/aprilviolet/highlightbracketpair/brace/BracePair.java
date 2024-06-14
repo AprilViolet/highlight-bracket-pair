@@ -97,18 +97,14 @@ public class BracePair {
 
         public BracePair build() {
             if (this.leftIterator == null) {
-                String leftText = this.leftText == null ?
-                        BraceTokenTypes.getElementTypeText(this.leftType) : this.leftText;
-                String rightText = this.rightText == null ?
-                        BraceTokenTypes.getElementTypeText(this.rightType) : this.rightText;
+                String leftText = this.leftText == null ? BraceTokenTypes.getElementTypeText(this.leftType) : this.leftText;
+                String rightText = this.rightText == null ? BraceTokenTypes.getElementTypeText(this.rightType) : this.rightText;
                 leftText = leftText == null ? "" : leftText;
                 rightText = rightText == null ? "" : rightText;
-                return new BracePair(this.leftType, this.rightType, leftText, rightText,
-                        this.leftOffset, this.rightOffset);
+                return new BracePair(this.leftType, this.rightType, leftText, rightText, this.leftOffset, this.rightOffset);
             } else {
                 // created by the iterator
-                return new BracePair(this.leftType, this.rightType,
-                        this.leftIterator, this.rightIterator);
+                return new BracePair(this.leftType, this.rightType, this.leftIterator, this.rightIterator);
             }
         }
     }

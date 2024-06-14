@@ -66,10 +66,8 @@ public class BracketMatchProcessorHolder {
      * @param fileType        file type
      * @return offset
      */
-    public static int findLeftBraceOffset(HighlighterIterator iterator, IElementType lparenTokenType, CharSequence fileText,
-                                          FileType fileType, boolean isBlockCaret, Integer offset) {
-        return BRACKET_MATCHING_FACTORY.getProcessor(fileType)
-                .findLeftParen(iterator, lparenTokenType, fileText, fileType, isBlockCaret, offset);
+    public static int findLeftBraceOffset(HighlighterIterator iterator, IElementType lparenTokenType, CharSequence fileText, FileType fileType, boolean isBlockCaret, Integer offset) {
+        return BRACKET_MATCHING_FACTORY.getProcessor(fileType).findLeftParen(iterator, lparenTokenType, fileText, fileType, isBlockCaret, offset);
     }
 
     /**
@@ -84,8 +82,7 @@ public class BracketMatchProcessorHolder {
     public static int findRightBraceOffset(HighlighterIterator iterator, IElementType rparenTokenType, CharSequence fileText,
                                            FileType fileType, boolean isBlockCaret, Integer offset) {
 
-        return BRACKET_MATCHING_FACTORY.getProcessor(fileType)
-                .findRightParen(iterator, rparenTokenType, fileText, fileType, isBlockCaret, offset);
+        return BRACKET_MATCHING_FACTORY.getProcessor(fileType).findRightParen(iterator, rparenTokenType, fileText, fileType, isBlockCaret, offset);
     }
 
     /**
@@ -160,8 +157,7 @@ public class BracketMatchProcessorHolder {
      * @return true:is left character false:otherwise
      */
     private static boolean isLeftBrace(char character) {
-        return character == L_BRACE_ATTR || character == L_BRACKET_ATTR
-                || character == L_CUSP_BRACKETS_ATTR || character == L_PARENTHESIS_ATTR;
+        return character == L_BRACE_ATTR || character == L_BRACKET_ATTR || character == L_CUSP_BRACKETS_ATTR || character == L_PARENTHESIS_ATTR;
     }
 
     /**
@@ -171,7 +167,6 @@ public class BracketMatchProcessorHolder {
      * @return true:is right character false:otherwise
      */
     private static boolean isRightBrace(char character) {
-        return character == R_BRACE_ATTR || character == R_BRACKET_ATTR
-                || character == R_CUSP_BRACKETS_ATTR || character == R_PARENTHESIS_ATTR;
+        return character == R_BRACE_ATTR || character == R_BRACKET_ATTR || character == R_CUSP_BRACKETS_ATTR || character == R_PARENTHESIS_ATTR;
     }
 }

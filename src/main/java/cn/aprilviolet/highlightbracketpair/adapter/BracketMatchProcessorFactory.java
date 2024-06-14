@@ -18,7 +18,8 @@ public class BracketMatchProcessorFactory {
     Map<String, BracketMatchProcessor> braceMatchingMapProcessor = new HashMap<>();
 
     private BracketMatchProcessorFactory() {
-        braceMatchingMapProcessor.put("Default", new BracketMatchProcessor() {});
+        braceMatchingMapProcessor.put("Default", new BracketMatchProcessor() {
+        });
         init();
     }
 

@@ -31,8 +31,7 @@ public interface BracketMatchProcessor {
      * @param offset          offset
      * @return offset
      */
-    default int findLeftParen(HighlighterIterator iterator, IElementType lparenTokenType, CharSequence fileText,
-                              FileType fileType, boolean isBlockCaret, Integer offset) {
+    default int findLeftParen(HighlighterIterator iterator, IElementType lparenTokenType, CharSequence fileText, FileType fileType, boolean isBlockCaret, Integer offset) {
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
         Deque<IElementType> braceStack = new ArrayDeque<>();
         for (; !iterator.atEnd(); iterator.retreat()) {
@@ -76,8 +75,7 @@ public interface BracketMatchProcessor {
      * @param offset          offset
      * @return offset
      */
-    default int findRightParen(HighlighterIterator iterator, IElementType rparenTokenType, CharSequence fileText,
-                               FileType fileType, boolean isBlockCaret, Integer offset) {
+    default int findRightParen(HighlighterIterator iterator, IElementType rparenTokenType, CharSequence fileText, FileType fileType, boolean isBlockCaret, Integer offset) {
         int initOffset = iterator.atEnd() ? -1 : iterator.getStart();
         Deque<IElementType> braceStack = new ArrayDeque<>();
         for (; !iterator.atEnd(); iterator.advance()) {

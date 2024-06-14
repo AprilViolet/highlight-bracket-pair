@@ -97,12 +97,18 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
     @NotNull
     @Override
     public String getDemoText() {
-        return "<Brace>{</Brace>...<Brace>}</Brace>" +
-                "\n<Parenthesis>(</Parenthesis>...<Parenthesis>)</Parenthesis>" +
-                "\n<Bracket>[</Bracket>...<Bracket>]</Bracket>" +
-                "\n<CuspBracket><</CuspBracket>...<CuspBracket>></CuspBracket>" +
-                "\n<DoubleQuote>\"</DoubleQuote>...<DoubleQuote>\"</DoubleQuote>" +
-                "\n<BraceInGutter>|</BraceInGutter>...<BraceInGutter>|</BraceInGutter>";
+        return """
+                <Brace>{</Brace>...<Brace>}</Brace>\
+
+                <Parenthesis>(</Parenthesis>...<Parenthesis>)</Parenthesis>\
+
+                <Bracket>[</Bracket>...<Bracket>]</Bracket>\
+
+                <CuspBracket><</CuspBracket>...<CuspBracket>></CuspBracket>\
+
+                <DoubleQuote>"</DoubleQuote>...<DoubleQuote>"</DoubleQuote>\
+
+                <BraceInGutter>|</BraceInGutter>...<BraceInGutter>|</BraceInGutter>""";
     }
 
     @Nullable

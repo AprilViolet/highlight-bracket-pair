@@ -86,8 +86,7 @@ public class HighlightEditorCartListener implements CaretListener {
                 gutterBracketSize = "14";
             }
             // show braces in gutter
-            Pair<RangeHighlighter, RangeHighlighter> highlighterInGutter = highlighter.renderBracesInGutter(bracePair,
-                    Integer.parseInt(gutterBracketSize));
+            Pair<RangeHighlighter, RangeHighlighter> highlighterInGutter = highlighter.renderBracesInGutter(bracePair, Integer.parseInt(gutterBracketSize));
             if (ObjectUtils.isNotEmpty(highlighterInGutter)) {
                 gutterHighlighterList.add(highlighterInGutter.getLeft());
                 gutterHighlighterList.add(highlighterInGutter.getRight());
