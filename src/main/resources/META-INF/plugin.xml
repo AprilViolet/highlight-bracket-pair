@@ -13,6 +13,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.5.1</p>
+        <ul>
+            <li>
+                Fix highlighter kotlin for DOUBLE_QUOTE.#17
+            </li>
+        </ul>
         <p>1.5.0</p>
         <ul>
             <li>
