@@ -1,6 +1,6 @@
 # highlight-bracket-pair #
 
-![Build](https://github.com/AprilViolet/highlight-bracket-pair/workflows/Build/badge.svg) [![Version](https://img.shields.io/jetbrains/plugin/v/17320.svg)](https://plugins.jetbrains.com/plugin/17320) [![Downloads](https://img.shields.io/jetbrains/plugin/d/17320.svg)](https://plugins.jetbrains.com/plugin/17320) ![Downloads](https://camo.githubusercontent.com/3786cf64bc973cbd34b2b4e7b6f9de0da69d01833d7ca54e393cd855e204639c/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f71656573756e672f486967686c69676874427261636b6574506169722e737667)
+![Build](https://github.com/AprilViolet/highlight-bracket-pair/workflows/Build/badge.svg) [![Version](https://img.shields.io/jetbrains/plugin/v/17320.svg)](https://plugins.jetbrains.com/plugin/17320) [![Downloads](https://img.shields.io/jetbrains/plugin/d/17320.svg)](https://plugins.jetbrains.com/plugin/17320) 
 
 ## Plugin Description
 
