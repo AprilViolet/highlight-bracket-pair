@@ -163,8 +163,12 @@ public abstract class AbstractBracketHighlighter {
         final TextAttributes textAttributes = editor.getColorsScheme().getAttributes(textAttributesKey);
 
         int openBraceLine = document.getLineNumber(leftBraceOffset);
-        RangeHighlighter openBraceHighlighter = renderBraceInGutter(openBraceLine, leftBraceText, textAttributes, gutterBracketSize);
         int closeBraceLine = document.getLineNumber(rightBraceOffset);
+        if (openBraceLine == closeBraceLine) {
+            return null;
+        }
+
+        RangeHighlighter openBraceHighlighter = renderBraceInGutter(openBraceLine, leftBraceText, textAttributes, gutterBracketSize);
         RangeHighlighter closeBraceHighlighter = renderBraceInGutter(closeBraceLine, rightBraceText, textAttributes, gutterBracketSize);
         return new Pair<>(openBraceHighlighter, closeBraceHighlighter);
     }

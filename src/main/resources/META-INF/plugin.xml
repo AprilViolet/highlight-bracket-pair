@@ -13,6 +13,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.5.2</p>
+        <ul>
+            <li>
+                Optimize the display of gutter.
+            </li>
+        </ul>
         <p>1.5.1</p>
         <ul>
             <li>
