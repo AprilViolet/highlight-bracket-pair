@@ -1,5 +1,6 @@
 package cn.aprilviolet.highlightbracketpair.adapter;
 
+import cn.aprilviolet.highlightbracketpair.constant.Constant;
 import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.tree.IElementType;
@@ -23,11 +24,6 @@ import static cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes.*;
 public class BracketMatchProcessorHolder {
     private BracketMatchProcessorHolder() {
     }
-
-    /**
-     * default return value for no brace offset
-     */
-    public static final int NON_BRACE_OFFSET = -1;
 
     protected static final Set<String> STRING_TOKEN_SET = new HashSet<>();
 
@@ -79,9 +75,7 @@ public class BracketMatchProcessorHolder {
      * @param fileType        file type
      * @return offset
      */
-    public static int findRightBraceOffset(HighlighterIterator iterator, IElementType rparenTokenType, CharSequence fileText,
-                                           FileType fileType, boolean isBlockCaret, Integer offset) {
-
+    public static int findRightBraceOffset(HighlighterIterator iterator, IElementType rparenTokenType, CharSequence fileText, FileType fileType, boolean isBlockCaret, Integer offset) {
         return BRACKET_MATCHING_FACTORY.getProcessor(fileType).findRightParen(iterator, rparenTokenType, fileText, fileType, isBlockCaret, offset);
     }
 
@@ -105,7 +99,7 @@ public class BracketMatchProcessorHolder {
      */
     public static int findLeftParen(CharSequence fileText, int offset) {
         if (offset > fileText.length() || offset < 0) {
-            return NON_BRACE_OFFSET;
+            return Constant.NON_OFFSET;
         }
         Deque<Integer> indexDeque = new ArrayDeque<>();
         for (int i = offset - 1; i > -1; i--) {
@@ -120,7 +114,7 @@ public class BracketMatchProcessorHolder {
                 indexDeque.addFirst(i);
             }
         }
-        return NON_BRACE_OFFSET;
+        return Constant.NON_OFFSET;
     }
 
     /**
@@ -132,7 +126,7 @@ public class BracketMatchProcessorHolder {
      */
     public static int findRightParen(CharSequence fileText, int offset) {
         if (offset > fileText.length() || offset < 0) {
-            return NON_BRACE_OFFSET;
+            return Constant.NON_OFFSET;
         }
         Deque<Integer> index = new ArrayDeque<>();
         for (int i = offset; i < fileText.length(); i++) {
@@ -147,7 +141,7 @@ public class BracketMatchProcessorHolder {
                 index.addFirst(i);
             }
         }
-        return NON_BRACE_OFFSET;
+        return Constant.NON_OFFSET;
     }
 
     /**

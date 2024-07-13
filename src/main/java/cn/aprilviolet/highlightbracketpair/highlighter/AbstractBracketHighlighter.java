@@ -4,6 +4,7 @@ import cn.aprilviolet.highlightbracketpair.adapter.BracketMatchProcessorHolder;
 import cn.aprilviolet.highlightbracketpair.brace.Brace;
 import cn.aprilviolet.highlightbracketpair.brace.BracePair;
 import cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes;
+import cn.aprilviolet.highlightbracketpair.constant.Constant;
 import cn.aprilviolet.highlightbracketpair.extend.XmlSupportedToken;
 import cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettingsPage;
 import cn.aprilviolet.highlightbracketpair.util.Pair;
@@ -39,11 +40,9 @@ import static cn.aprilviolet.highlightbracketpair.brace.BraceTokenTypes.DOUBLE_Q
  * @since v1.0.0
  */
 public abstract class AbstractBracketHighlighter {
-    public static final Integer NON_OFFSET = -1;
-
     public static final Integer HIGHLIGHT_LAYER_WEIGHT = 100;
 
-    public static final BracePair EMPTY_BRACE_PAIR = new BracePair.BracePairBuilder().leftOffset(NON_OFFSET).rightOffset(NON_OFFSET).build();
+    public static final BracePair EMPTY_BRACE_PAIR = new BracePair.BracePairBuilder().leftOffset(Constant.NON_OFFSET).rightOffset(Constant.NON_OFFSET).build();
 
     protected Editor editor;
 
@@ -93,8 +92,7 @@ public abstract class AbstractBracketHighlighter {
         int leftSymbolBraceOffset = stringSymbolBracePair.getLeftBrace().getOffset();
         int rightSymbolBraceOffset = stringSymbolBracePair.getRightBrace().getOffset();
 
-        if ((offset - leftBraceTokenOffset > offset - leftSymbolBraceOffset)
-                && (offset - rightBraceTokenOffset < offset - rightSymbolBraceOffset)) {
+        if ((offset - leftBraceTokenOffset > offset - leftSymbolBraceOffset) && (offset - rightBraceTokenOffset < offset - rightSymbolBraceOffset)) {
             return stringSymbolBracePair;
         } else {
             return braceTokenBracePair;
@@ -115,7 +113,7 @@ public abstract class AbstractBracketHighlighter {
         String leftBraceText = leftBrace.getText();
         String rightBraceText = rightBrace.getText();
 
-        if (leftBraceOffset == NON_OFFSET || rightBraceOffset == NON_OFFSET) {
+        if (leftBraceOffset == Constant.NON_OFFSET || rightBraceOffset == Constant.NON_OFFSET) {
             return null;
         }
         // try to get the text attr by element type
@@ -149,7 +147,7 @@ public abstract class AbstractBracketHighlighter {
         final String leftBraceText = leftBrace.getText();
         final String rightBraceText = rightBrace.getText();
 
-        if (leftBraceOffset == NON_OFFSET || rightBraceOffset == NON_OFFSET) {
+        if (leftBraceOffset == Constant.NON_OFFSET || rightBraceOffset == Constant.NON_OFFSET) {
             return null;
         }
         if (!LEFT_BRACKET.equals(leftBraceText) || !RIGHT_BRACKET.equals(rightBraceText)) {
@@ -168,7 +166,6 @@ public abstract class AbstractBracketHighlighter {
         RangeHighlighter openBraceHighlighter = renderBraceInGutter(openBraceLine, leftBraceText, textAttributes, gutterBracketSize);
         int closeBraceLine = document.getLineNumber(rightBraceOffset);
         RangeHighlighter closeBraceHighlighter = renderBraceInGutter(closeBraceLine, rightBraceText, textAttributes, gutterBracketSize);
-
         return new Pair<>(openBraceHighlighter, closeBraceHighlighter);
     }
 
@@ -180,11 +177,8 @@ public abstract class AbstractBracketHighlighter {
      * @param textAttributes text
      * @return RangeHighlighter
      */
-    public RangeHighlighter renderBraceInGutter(int braceLine, String braceText,
-                                                TextAttributes textAttributes, Integer gutterBracketSize) {
-        RangeHighlighter braceHighlighter = editor.getMarkupModel()
-                .addLineHighlighter(braceLine, HighlighterLayer.SELECTION, null);
-
+    public RangeHighlighter renderBraceInGutter(int braceLine, String braceText, TextAttributes textAttributes, Integer gutterBracketSize) {
+        RangeHighlighter braceHighlighter = editor.getMarkupModel().addLineHighlighter(braceLine, HighlighterLayer.SELECTION, null);
         GutterIconRenderer braceGutterIconRenderer = new GutterIconRenderer() {
             @NotNull
             @Override
@@ -247,7 +241,7 @@ public abstract class AbstractBracketHighlighter {
             int leftBraceOffset = BracketMatchProcessorHolder.findLeftBraceOffset(leftTraverseIterator, braceTokenPair.getLeft(), this.fileText, this.fileType, isBlockCaret, offset);
             int rightBraceOffset = BracketMatchProcessorHolder.findRightBraceOffset(rightTraverseIterator, braceTokenPair.getRight(), this.fileText, this.fileType, isBlockCaret, offset);
 
-            if (leftBraceOffset != NON_OFFSET && rightBraceOffset != NON_OFFSET) {
+            if (leftBraceOffset != Constant.NON_OFFSET && rightBraceOffset != Constant.NON_OFFSET) {
                 if (braceTokenPair.getRight().equals(XmlTokenType.XML_TAG_END)) {
                     HighlighterIterator leftIterator = editorHighlighter.createIterator(leftBraceOffset);
                     HighlighterIterator rightIterator = editorHighlighter.createIterator(rightBraceOffset);
@@ -293,14 +287,15 @@ public abstract class AbstractBracketHighlighter {
         HighlighterIterator iterator = editorHighlighter.createIterator(offset);
         IElementType type = iterator.getTokenType();
         boolean isBlockCaret = this.isBlockCaret();
-        if (!BracketMatchProcessorHolder.isStringToken(type)) {
+        boolean kCloseQuote = this.psiFile.getLanguage().getID().equalsIgnoreCase(Constant.KOTLIN) && Constant.CLOSING_QUOTE.equalsIgnoreCase(type.toString());
+        if (!kCloseQuote && !BracketMatchProcessorHolder.isStringToken(type)) {
             return EMPTY_BRACE_PAIR;
         }
 
         int leftOffset;
         int rightOffset;
         // fix: #17
-        if (BraceTokenTypes.KOTLIN_STRING_TOKEN.equalsIgnoreCase(type.toString())) {
+        if (BraceTokenTypes.KOTLIN_STRING_TOKEN.equalsIgnoreCase(type.toString()) || Constant.CLOSING_QUOTE.equalsIgnoreCase(type.toString())) {
             leftOffset = iterator.getStart() - 1;
             rightOffset = iterator.getEnd();
         } else {
