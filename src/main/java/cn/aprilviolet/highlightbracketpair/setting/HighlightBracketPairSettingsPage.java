@@ -119,13 +119,13 @@ public class HighlightBracketPairSettingsPage implements ColorSettingsPage {
 
     @NotNull
     @Override
-    public AttributesDescriptor @NotNull [] getAttributeDescriptors() {
+    public AttributesDescriptor[] getAttributeDescriptors() {
         return ATTRIBUTES_DESCRIPTION;
     }
 
     @NotNull
     @Override
-    public ColorDescriptor @NotNull [] getColorDescriptors() {
+    public ColorDescriptor[] getColorDescriptors() {
         return new ColorDescriptor[0];
     }
 
