@@ -1,6 +1,14 @@
+
+import org.gradle.kotlin.dsl.changelog
+import org.gradle.kotlin.dsl.intellijPlatform
+import org.gradle.kotlin.dsl.intellijPlatformTesting
+import org.gradle.kotlin.dsl.kover
+import org.gradle.kotlin.dsl.libs
+import org.gradle.kotlin.dsl.patchChangelog
+import org.gradle.kotlin.dsl.publishPlugin
+import org.gradle.kotlin.dsl.testImplementation
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
-import org.jetbrains.intellij.platform.gradle.Constants.Constraints
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 plugins {
@@ -136,19 +144,23 @@ tasks {
     }
 }
 
-val runIdeForUiTests by intellijPlatformTesting.runIde.registering {
-    task {
-        jvmArgumentProviders += CommandLineArgumentProvider {
-            listOf(
-                "-Drobot-server.port=8082",
-                "-Dide.mac.message.dialogs.as.sheets=false",
-                "-Djb.privacy.policy.text=<!--999.999-->",
-                "-Djb.consents.confirmation.enabled=false",
-            )
-        }
-    }
+intellijPlatformTesting {
+    runIde {
+        register("runIdeForUiTests") {
+            task {
+                jvmArgumentProviders += CommandLineArgumentProvider {
+                    listOf(
+                        "-Drobot-server.port=8082",
+                        "-Dide.mac.message.dialogs.as.sheets=false",
+                        "-Djb.privacy.policy.text=<!--999.999-->",
+                        "-Djb.consents.confirmation.enabled=false",
+                    )
+                }
+            }
 
-    plugins {
-        robotServerPlugin(Constraints.LATEST_VERSION)
+            plugins {
+                robotServerPlugin()
+            }
+        }
     }
 }
