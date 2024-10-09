@@ -1,8 +1,8 @@
 <idea-plugin>
     <id>HighlightBracketPair</id>
     <name>HighlightBracketPair</name>
-    <version>1.3.9</version>
-    <vendor email="AprilEternityLT@gmail.com" url="https://github.com/AprilViolet">AprilViolet</vendor>
+    <version>1.5.3</version>
+    <vendor email="ltao.etc@outlook.com" url="https://github.com/AprilViolet">AprilViolet</vendor>
 
     <description><![CDATA[
       The plugin can color highlight the Bracket Pair in editor for IntelliJ.<br/>
@@ -17,6 +17,9 @@
         <ul>
             <li>
                 Upgrade the template to v2.0.0
+            </li>
+            <li>
+                Fixed:Support Idea2024.3
             </li>
         </ul>
         <p>1.5.2</p>
