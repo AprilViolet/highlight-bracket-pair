@@ -33,10 +33,9 @@ public class Pair<L, R> {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Pair)) {
+        if (!(object instanceof Pair pair)) {
             return false;
         }
-        Pair pair = (Pair) object;
         return this.left.equals(pair.getLeft()) && this.right.equals(pair.getRight());
     }
 }

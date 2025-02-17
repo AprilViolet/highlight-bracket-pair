@@ -1,12 +1,4 @@
 
-import org.gradle.kotlin.dsl.changelog
-import org.gradle.kotlin.dsl.intellijPlatform
-import org.gradle.kotlin.dsl.intellijPlatformTesting
-import org.gradle.kotlin.dsl.kover
-import org.gradle.kotlin.dsl.libs
-import org.gradle.kotlin.dsl.patchChangelog
-import org.gradle.kotlin.dsl.publishPlugin
-import org.gradle.kotlin.dsl.testImplementation
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType

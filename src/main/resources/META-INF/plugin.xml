@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>HighlightBracketPair</id>
     <name>HighlightBracketPair</name>
-    <version>1.5.3</version>
+    <version>1.5.4</version>
     <vendor email="ltao.etc@outlook.com" url="https://github.com/AprilViolet">AprilViolet</vendor>
 
     <description><![CDATA[
@@ -13,6 +13,15 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.5.4</p>
+        <ul>
+            <li>
+                Upgrade the template to v2.0.2
+            </li>
+            <li>
+                Fixed:Support Idea2025.1
+            </li>
+        </ul>
         <p>1.5.3</p>
         <ul>
             <li>
