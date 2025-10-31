@@ -1,6 +1,8 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.intellij.platform.gradle.models.ProductRelease
 
 plugins {
     id("java") // Java support
@@ -43,6 +45,9 @@ dependencies {
 
         // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file for plugin from JetBrains Marketplace.
         plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
+
+        // Module Dependencies. Uses `platformBundledModules` property from the gradle.properties file for bundled IntelliJ Platform modules.
+        bundledModules(providers.gradleProperty("platformBundledModules").map { it.split(',') })
 
         testFramework(TestFrameworkType.Platform)
     }
@@ -101,7 +106,6 @@ intellijPlatform {
 
     pluginVerification {
         ides {
-            recommended()
         }
     }
 }

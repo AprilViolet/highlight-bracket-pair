@@ -17,21 +17,23 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+
       # Free GitHub Actions Environment Disk Space
       - name: Maximize Build Space
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
           tool-cache: false
           large-packages: false
+
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.release.tag_name }}
 
       # Set up the Java environment for the next steps
       - name: Setup Java
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: 21
@@ -42,19 +44,17 @@ jobs:
         with:
           cache-read-only: true
 
-      # Set environment variables
-      - name: Export Properties
-        id: properties
-        shell: bash
+      # Update the Unreleased section with the current release note
+      - name: Patch Changelog
+        if: ${{ github.event.release.body != '' }}
+        env:
+          CHANGELOG: ${{ github.event.release.body }}
         run: |
-          CHANGELOG="$(cat << 'EOM' | sed -e 's/^[[:space:]]*$//g' -e '/./,$!d'
-          ${{ github.event.release.body }}
-          EOM
-          )"
-          
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
-          echo "$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          RELEASE_NOTE="./build/tmp/release_note.txt"
+          mkdir -p "$(dirname "$RELEASE_NOTE")"
+          echo "$CHANGELOG" > $RELEASE_NOTE
+
+          ./gradlew patchChangelog --release-note-file=$RELEASE_NOTE
 
       # Publish the plugin to JetBrains Marketplace
       - name: Publish Plugin
