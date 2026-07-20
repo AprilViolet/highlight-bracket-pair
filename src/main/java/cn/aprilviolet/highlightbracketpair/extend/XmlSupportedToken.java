@@ -8,7 +8,6 @@ import com.intellij.openapi.editor.highlighter.HighlighterIterator;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.xml.XmlTokenType;
-import org.apache.commons.collections.CollectionUtils;
 
 import java.util.*;
 
@@ -31,7 +30,7 @@ public class XmlSupportedToken extends CustomSupportedToken {
         }
 
         List<Pair<IElementType, IElementType>> pairList = languagePairsMap.getOrDefault(xml, new ArrayList<>());
-        if (CollectionUtils.isEmpty(pairList)) {
+        if (pairList.isEmpty()) {
             pairList.add(new Pair<>(XmlTokenType.XML_START_TAG_START, XmlTokenType.XML_TAG_END));
             pairList.add(new Pair<>(XmlTokenType.XML_ATTRIBUTE_VALUE_START_DELIMITER,
                     XmlTokenType.XML_ATTRIBUTE_VALUE_END_DELIMITER));

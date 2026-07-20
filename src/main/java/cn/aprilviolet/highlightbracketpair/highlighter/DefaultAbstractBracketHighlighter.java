@@ -10,7 +10,6 @@ import com.intellij.lang.LanguageBraceMatching;
 import com.intellij.lang.PairedBraceMatcher;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.tree.IElementType;
-import org.apache.commons.collections.CollectionUtils;
 
 import java.util.*;
 
@@ -55,7 +54,7 @@ public class DefaultAbstractBracketHighlighter extends AbstractBracketHighlighte
     public List<Pair<IElementType, IElementType>> getSupportedBraceToken() {
         Language language = this.psiFile.getLanguage();
         List<Pair<IElementType, IElementType>> braceList = LANGUAGE_BRACE_PAIRS.get(language);
-        boolean emptyFlag = CollectionUtils.isEmpty(braceList);
+        boolean emptyFlag = braceList == null || braceList.isEmpty();
         if (Boolean.TRUE.equals(bracketPairSettings.getHighlightXmlFlag())) {
             if (emptyFlag) {
                 XmlSupportedToken.Singleton.INSTANCE.addSupported(language, LANGUAGE_BRACE_PAIRS);
