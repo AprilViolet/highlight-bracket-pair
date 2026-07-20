@@ -6,6 +6,10 @@
 
 - More language support.
 
+### Fixed
+
+- Fix NoClassDefFoundError about commons-collections on IDEA 2026.2. (#70)
+
 ## [1.4.3 - 2024.02.25]
 
 ### Fixed
