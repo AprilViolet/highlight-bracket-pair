@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>HighlightBracketPair</id>
     <name>HighlightBracketPair</name>
-    <version>1.5.7</version>
+    <version>1.5.8</version>
     <vendor email="ltao.etc@outlook.com" url="https://github.com/AprilViolet">AprilViolet</vendor>
 
     <description><![CDATA[
@@ -13,6 +13,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <p>1.5.8</p>
+        <ul>
+            <li>
+                Fixed:Remove warnings about using internal APIs
+            </li>
+        </ul>
         <p>1.5.7</p>
         <ul>
             <li>

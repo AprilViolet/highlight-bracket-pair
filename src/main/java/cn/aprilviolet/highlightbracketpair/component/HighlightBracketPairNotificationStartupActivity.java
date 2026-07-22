@@ -2,11 +2,8 @@ package cn.aprilviolet.highlightbracketpair.component;
 
 
 import cn.aprilviolet.highlightbracketpair.setting.HighlightBracketPairSettings;
-import com.intellij.ide.plugins.IdeaPluginDescriptor;
-import com.intellij.ide.plugins.PluginManagerCore;
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
-import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.ProjectActivity;
 import kotlin.Unit;
@@ -28,21 +25,19 @@ public class HighlightBracketPairNotificationStartupActivity implements ProjectA
      */
     private boolean updateNotificationShown = Boolean.TRUE;
 
+    private static final String PLUGIN_VERSION = "1.5.8";
+
     @Nullable
     @Override
     public Object execute(@NotNull Project project, @NotNull Continuation<? super Unit> continuation) {
         try {
             final HighlightBracketPairSettings settings = HighlightBracketPairSettings.getInstance();
-            if (!getPlugin().getVersion().equals(settings.getPluginVersion())) {
-                settings.setPluginVersion(getPlugin().getVersion());
+            if (!PLUGIN_VERSION.equals(settings.getPluginVersion())) {
+                settings.setPluginVersion(PLUGIN_VERSION);
                 if (updateNotificationShown) {
-                    String content = """
-                            Thank you for downloading HighlightBracketPair v"""
-                            + settings.getPluginVersion() +
-                            """
-                            <br/>
-                            If you run into any problem, <b><a href="https://github.com/AprilViolet/highlight-bracket-pair">feel free to raise a issue</a>.</b>
-                            """;
+                    String content = "Thank you for downloading HighlightBracketPair v" + settings.getPluginVersion()
+                            + "<br/>"
+                            + "If you run into any problem, <b><a href=\"https://github.com/AprilViolet/highlight-bracket-pair\">feel free to raise a issue</a>.</b>";
                     NotificationGroupManager.getInstance().getNotificationGroup("HighlighterBracketPairNotification")
                             .createNotification(content, NotificationType.INFORMATION).notify(project);
                 }
@@ -51,14 +46,5 @@ public class HighlightBracketPairNotificationStartupActivity implements ProjectA
             updateNotificationShown = Boolean.FALSE;
         }
         return null;
-    }
-
-    /**
-     * Get the plugin description by plugin id.
-     *
-     * @return plugin description
-     */
-    private IdeaPluginDescriptor getPlugin() {
-        return PluginManagerCore.getPlugin(PluginId.getId("HighlightBracketPair"));
     }
 }
